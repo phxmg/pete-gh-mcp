@@ -17,18 +17,15 @@ RUN apt-get update \
  && apt-get purge -y curl && apt-get autoremove -y && rm -rf /var/lib/apt/lists/*
 
 # Pre-install the bridge so container start is not blocked on a network fetch.
-RUN npm install -g supergateway@latest
+
+WORKDIR /app
+COPY proxy.js /app/proxy.js
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
 
 EXPOSE 8931
 
-# HA 2026.7 tries streamable HTTP first, then falls back to SSE on McpError.
-# Serving SSE at /mcp makes HA's POST 404 (-> McpError) and its fallback GET
-# land on the live SSE stream. --baseUrl carries Traefik's stripped /pete-mcp
-# prefix into the endpoint event so the client POSTs messages to the right path.
-ENTRYPOINT ["supergateway", "--stdio", "github-mcp-server stdio", \
-            "--outputTransport", "sse", \
-            "--port", "8931", \
-            "--ssePath", "/mcp", \
-            "--messagePath", "/message", \
-            "--baseUrl", "http://192.168.200.2/pete-mcp", \
-            "--healthEndpoint", "/healthz"]
+# HA 2026.7's MCP client speaks streamable HTTP only -- its SSE fallback is
+# unreachable because nested ExceptionGroups hide the McpError. So we serve
+# the official github-mcp-server HTTP transport and inject auth in front of it.
+ENTRYPOINT ["/app/entrypoint.sh"]
