@@ -1,19 +1,29 @@
-FROM python:3.12-slim
+FROM node:22-slim
 
 ARG GH_MCP_VERSION=1.8.0
+ARG TARGETARCH=amd64
+
 RUN apt-get update \
  && apt-get install -y --no-install-recommends curl ca-certificates \
+ && case "$TARGETARCH" in \
+      arm64) GHARCH=arm64 ;; \
+      *)     GHARCH=x86_64 ;; \
+    esac \
  && curl -fsSL -o /tmp/gh.tgz \
-      https://github.com/github/github-mcp-server/releases/download/v${GH_MCP_VERSION}/github-mcp-server_Linux_x86_64.tar.gz \
+      "https://github.com/github/github-mcp-server/releases/download/v${GH_MCP_VERSION}/github-mcp-server_Linux_${GHARCH}.tar.gz" \
  && tar -xzf /tmp/gh.tgz -C /usr/local/bin github-mcp-server \
  && chmod +x /usr/local/bin/github-mcp-server \
- && rm -rf /tmp/gh.tgz /var/lib/apt/lists/* \
- && apt-get purge -y curl && apt-get autoremove -y
+ && rm -f /tmp/gh.tgz \
+ && apt-get purge -y curl && apt-get autoremove -y && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --no-cache-dir mcp-proxy==0.12.0
+# Pre-install the bridge so container start is not blocked on a network fetch.
+RUN npm install -g supergateway@latest
 
 EXPOSE 8931
 
-# mcp-proxy runs the GitHub server over stdio and exposes it as SSE, which is
-# the only transport Home Assistant's MCP client speaks.
-ENTRYPOINT ["mcp-proxy", "--pass-environment", "--sse-port=8931", "--sse-host=0.0.0.0", "--", "github-mcp-server", "stdio"]
+# HA's MCP client speaks SSE only; github-mcp-server speaks stdio only.
+# supergateway bridges the two. GITHUB_TOOLS cherry-picks 4 tools out of 44 -
+# every tool schema rides along on every conversation turn, so this matters.
+ENTRYPOINT ["supergateway", "--stdio", "github-mcp-server stdio", \
+            "--port", "8931", "--ssePath", "/sse", "--messagePath", "/message", \
+            "--healthEndpoint", "/healthz"]
