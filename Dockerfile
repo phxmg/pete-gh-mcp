@@ -21,9 +21,11 @@ RUN npm install -g supergateway@latest
 
 EXPOSE 8931
 
-# HA's MCP client speaks SSE only; github-mcp-server speaks stdio only.
-# supergateway bridges the two. GITHUB_TOOLS cherry-picks 4 tools out of 44 -
-# every tool schema rides along on every conversation turn, so this matters.
+# HA 2026.7's MCP client calls streamable_http_client() -- NOT SSE, despite what
+# the docs still say. Stateful so the session survives across tool calls.
 ENTRYPOINT ["supergateway", "--stdio", "github-mcp-server stdio", \
-            "--port", "8931", "--ssePath", "/sse", "--messagePath", "/message", \
+            "--outputTransport", "streamableHttp", \
+            "--port", "8931", \
+            "--streamableHttpPath", "/mcp", \
+            "--stateful", \
             "--healthEndpoint", "/healthz"]
