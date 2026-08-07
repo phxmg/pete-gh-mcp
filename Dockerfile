@@ -21,11 +21,14 @@ RUN npm install -g supergateway@latest
 
 EXPOSE 8931
 
-# HA 2026.7's MCP client calls streamable_http_client() -- NOT SSE, despite what
-# the docs still say. Stateful so the session survives across tool calls.
+# HA 2026.7 tries streamable HTTP first, then falls back to SSE on McpError.
+# Serving SSE at /mcp makes HA's POST 404 (-> McpError) and its fallback GET
+# land on the live SSE stream. --baseUrl carries Traefik's stripped /pete-mcp
+# prefix into the endpoint event so the client POSTs messages to the right path.
 ENTRYPOINT ["supergateway", "--stdio", "github-mcp-server stdio", \
-            "--outputTransport", "streamableHttp", \
+            "--outputTransport", "sse", \
             "--port", "8931", \
-            "--streamableHttpPath", "/mcp", \
-            "--stateful", \
+            "--ssePath", "/mcp", \
+            "--messagePath", "/message", \
+            "--baseUrl", "http://192.168.200.2/pete-mcp", \
             "--healthEndpoint", "/healthz"]
