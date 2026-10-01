@@ -1,0 +1,1057 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#f6f4f0"><title>Michaels Art Supply Run</title><script>document.documentElement.classList.add('js')</script><style>
+:root{
+  --red:#d9272e;--red-dark:#b71f25;--ink:#161616;--sub:#6d6a66;--paper:#f6f4f0;--card:#fff;--line:#e9e5df;
+  --green:#167a52;--green-bg:#edf8f3;--soft-red:#fff0f0;--shadow:0 10px 30px rgba(28,22,16,.06);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{background:var(--paper);scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;font-size:16px;padding-bottom:calc(82px + env(safe-area-inset-bottom))}
+button,input,select{font:inherit}.app{max-width:720px;margin:0 auto;min-height:100vh}
+.mode-radio,.view-radio{position:fixed;opacity:0;pointer-events:none}
+.appbar{position:sticky;top:0;z-index:50;background:rgba(246,244,240,.96);backdrop-filter:saturate(180%) blur(18px);padding:calc(12px + env(safe-area-inset-top)) 16px 10px;border-bottom:1px solid rgba(218,212,204,.85)}
+.title-row{display:flex;align-items:center;gap:12px}.mark{width:42px;height:42px;border-radius:14px;background:var(--red);color:#fff;display:grid;place-items:center;font-size:22px;box-shadow:0 6px 16px rgba(217,39,46,.24)}
+.title-copy{min-width:0;flex:1}.eyebrow{display:block;color:var(--red);font-size:11px;font-weight:900;letter-spacing:.12em;line-height:1;margin-bottom:4px}.title-copy h1{font-size:22px;line-height:1.05;margin:0;font-weight:900;letter-spacing:-.03em}
+.progress-pill{flex:none;min-width:68px;height:44px;border-radius:15px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;padding:0 8px}.progress-pill strong{font-size:18px;letter-spacing:-.04em}.progress-pill span{color:var(--sub);font-size:12px;margin-left:2px}
+.progress-track{height:5px;background:#e4dfd8;border-radius:99px;overflow:hidden;margin-top:10px}.progress-fill{height:100%;width:0;background:var(--red);border-radius:inherit;transition:width .2s}
+.controls{padding:12px 14px 4px}.search-wrap{position:relative}.search{width:100%;height:50px;border-radius:15px;border:1px solid #dfdad3;background:#fff;padding:0 48px 0 44px;font-size:17px;outline:none;box-shadow:0 2px 9px rgba(35,27,19,.03)}.search:focus{border-color:#b7afa6;box-shadow:0 0 0 3px rgba(217,39,46,.08)}
+.search-icon{position:absolute;left:15px;top:13px;font-size:20px;color:#777}.clear-search{position:absolute;right:7px;top:6px;width:38px;height:38px;border:0;border-radius:12px;background:transparent;font-size:20px;color:#777;display:none}.clear-search.show{display:block}
+.mode-tabs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:9px;padding:4px;background:#e9e5df;border-radius:14px}.mode-tabs label{height:41px;border-radius:11px;display:flex;align-items:center;justify-content:center;gap:5px;font-weight:850;font-size:13px;color:#665f58;user-select:none}.mode-tabs b{font-size:11px;background:rgba(0,0,0,.06);padding:2px 6px;border-radius:999px}
+#mode-all:checked~.app .mode-tabs label[for=mode-all],#mode-essential:checked~.app .mode-tabs label[for=mode-essential],#mode-left:checked~.app .mode-tabs label[for=mode-left]{background:#fff;color:#111;box-shadow:0 2px 8px rgba(27,21,16,.07)}
+#mode-essential:checked~.app .shop-item[data-essential=false]{display:none!important}
+#mode-left:checked~.app .shop-item:has(input:checked){display:none!important}
+.category-scroll{display:flex;gap:7px;overflow:auto;margin:10px -14px 0;padding:0 14px 6px;scrollbar-width:none}.category-scroll::-webkit-scrollbar{display:none}.cat-btn{border:1px solid #e1ddd7;background:#fff;min-height:39px;border-radius:999px;padding:0 13px;font-weight:800;font-size:13px;color:#5f5a54;white-space:nowrap}.cat-btn.active{background:#171717;border-color:#171717;color:#fff}
+.filter-banner{display:none;margin:8px 0 0;background:#fff4df;border:1px solid #f2d49d;border-radius:13px;padding:9px 10px;align-items:center;gap:8px;font-size:13px;font-weight:800}.filter-banner.show{display:flex}.filter-banner span{flex:1}.filter-banner button{border:0;background:#2f2b27;color:#fff;border-radius:10px;padding:7px 10px;font-weight:850}
+.content{padding:2px 14px 22px}.screen{display:none}#view-shop:checked~.app #shopScreen,#view-activities:checked~.app #activitiesScreen,#view-studio:checked~.app #studioScreen{display:block}
+.nojs{margin:8px 14px 0;background:#fffbe8;border:1px solid #e8d796;border-radius:13px;padding:10px 12px;color:#60552f;font-size:13px;line-height:1.35}
+.shop-section{margin-top:18px}.shop-section[hidden]{display:none}.section-head{display:flex;align-items:center;gap:9px;padding:0 3px 8px}.section-icon{width:34px;height:34px;border-radius:11px;background:#fff;display:grid;place-items:center;border:1px solid var(--line);font-size:17px}.section-head h2{margin:0;font-size:18px;font-weight:900;letter-spacing:-.02em}.section-count{font-size:12px;color:#89837c;font-weight:700}.items{display:grid;gap:7px}
+.item{position:relative;min-height:72px;background:#fff;border:1px solid var(--line);border-radius:16px;display:flex;align-items:center;gap:11px;padding:9px 10px 9px 11px;box-shadow:0 2px 9px rgba(35,28,21,.025);user-select:none;cursor:pointer}.item:active{transform:scale(.992)}.item[hidden]{display:none!important}.item-check{position:absolute;opacity:0;pointer-events:none}.checkmark{width:38px;height:38px;border-radius:12px;border:2px solid #c9c2b9;display:grid;place-items:center;flex:none;background:#fff}.checkmark svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:3.1;stroke-linecap:round;stroke-linejoin:round;opacity:0}.item:has(.item-check:checked){background:var(--green-bg);border-color:#b9ddcd}.item:has(.item-check:checked) .checkmark{background:var(--green);border-color:var(--green)}.item:has(.item-check:checked) .checkmark svg{opacity:1}.item:has(.item-check:checked) .item-title{text-decoration:line-through;text-decoration-thickness:1.5px;color:#567166}.item:has(.item-check:checked) .item-note{color:#779286}.item-copy{min-width:0;flex:1}.item-title{display:block;font-size:16px;line-height:1.15;font-weight:860;letter-spacing:-.012em}.item-note{display:block;margin-top:4px;color:#7a756e;font-size:12.5px;line-height:1.24}.qty{flex:none;align-self:center;max-width:84px;background:#f1efeb;border-radius:999px;padding:6px 8px;font-size:11.5px;font-weight:900;color:#5b5650;text-align:center}.must{display:inline-block;vertical-align:2px;margin-left:4px;color:var(--red);font-size:9px;letter-spacing:.05em;text-decoration:none!important}
+.empty{display:none;background:#fff;border:1px dashed #d8d2ca;border-radius:17px;padding:28px 18px;text-align:center;margin-top:16px;color:#756e67}.empty.show{display:block}
+.list-footer{display:flex;justify-content:space-between;align-items:center;padding:22px 4px 8px;color:#8a837b;font-size:12px}.reset{border:0;background:transparent;color:#a3262b;font-weight:850;padding:9px}
+.screen-title{padding:12px 2px 10px}.screen-title .kicker{font-size:11px;color:var(--red);font-weight:900;letter-spacing:.12em}.screen-title h2{font-size:27px;line-height:1.03;margin:4px 0 4px;letter-spacing:-.04em}.screen-title p{margin:0;color:#716b64;font-size:14px;line-height:1.4}
+.activity-list{display:grid;gap:10px}.activity{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 3px 12px rgba(35,28,21,.03)}.activity summary{list-style:none;display:grid;grid-template-columns:48px 1fr 28px;gap:10px;align-items:center;padding:12px;cursor:pointer;min-height:74px}.activity summary::-webkit-details-marker{display:none}.activity-icon{width:48px;height:48px;border-radius:15px;background:#f4f1ec;display:grid;place-items:center;font-size:26px}.activity-summary{min-width:0}.activity-summary strong{display:block;font-size:16.5px;line-height:1.15;font-weight:900;letter-spacing:-.015em}.activity-summary small{display:block;color:#7b756e;font-size:12px;margin-top:4px;white-space:normal}.chev{font-size:22px;color:#999;text-align:center;transition:.2s}.activity[open] .chev{transform:rotate(180deg)}.activity-body{border-top:1px solid var(--line);padding:14px}.activity-desc{font-size:14px;color:#625d57;line-height:1.45;margin:0 0 12px}.shop-activity{width:100%;height:49px;border:0;border-radius:14px;background:#171717;color:#fff;font-weight:900;text-align:left;padding:0 15px;display:flex;align-items:center;justify-content:space-between}.activity-body h3{margin:20px 2px 8px;font-size:11px;letter-spacing:.11em;color:#8b847c}.activity-buy{display:grid;gap:6px}.activity-item{min-height:64px;box-shadow:none}.activity-item .item-note{display:none}.plain-list,.idea-list{margin:0;padding:0 0 0 22px;color:#5f5a54;font-size:14px;line-height:1.45}.plain-list li,.idea-list li{margin:7px 0}.steps{list-style:none;margin:0;padding:0;display:grid;gap:9px}.steps li{display:grid;grid-template-columns:32px 1fr;gap:9px;align-items:start}.steps li>span{width:32px;height:32px;border-radius:10px;background:#171717;color:#fff;display:grid;place-items:center;font-size:13px;font-weight:900}.steps p{margin:5px 0 0;color:#504c47;font-size:14px;line-height:1.42}
+.studio-grid{display:grid;gap:10px}.studio-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px}.studio-card h3{margin:0 0 6px;font-size:17px}.studio-card p,.studio-card li{color:#67615b;font-size:14px;line-height:1.45}.studio-card ul{margin:7px 0 0;padding-left:20px}.studio-card.danger{background:#fff6f6;border-color:#f0caca}
+.bottom-nav{position:fixed;z-index:60;left:50%;transform:translateX(-50%);bottom:0;width:min(720px,100%);display:grid;grid-template-columns:repeat(3,1fr);background:rgba(255,255,255,.96);border-top:1px solid #dfdbd5;padding:7px 8px calc(7px + env(safe-area-inset-bottom));backdrop-filter:blur(18px)}.bottom-nav label{min-height:58px;border-radius:15px;display:grid;place-items:center;align-content:center;gap:1px;color:#79736d;font-size:11px;font-weight:850;cursor:pointer}.nav-icon{font-size:21px;line-height:1}.nav-badge{position:absolute;margin-left:39px;margin-top:-29px;background:var(--red);color:#fff;border-radius:99px;min-width:20px;height:20px;display:grid;place-items:center;padding:0 5px;font-size:10px;border:2px solid #fff}
+#view-shop:checked~.app .bottom-nav label[for=view-shop],#view-activities:checked~.app .bottom-nav label[for=view-activities],#view-studio:checked~.app .bottom-nav label[for=view-studio]{background:#171717;color:#fff}
+.snack{position:fixed;z-index:80;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translate(-50%,16px);opacity:0;pointer-events:none;background:#171717;color:#fff;border-radius:13px;padding:10px 11px 10px 13px;display:flex;align-items:center;gap:12px;box-shadow:0 10px 30px rgba(0,0,0,.22);font-size:13px;font-weight:750}.snack.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}.snack button{border:0;background:#fff;border-radius:9px;padding:7px 9px;font-weight:900}
+@media(min-width:650px){.content,.controls{padding-left:18px;padding-right:18px}.activity-list{grid-template-columns:1fr 1fr}.activity[open]{grid-column:1/-1}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style></head><body>
+<input class="view-radio" type="radio" name="view" id="view-shop" value="shop" checked><input class="view-radio" type="radio" name="view" id="view-activities" value="activities"><input class="view-radio" type="radio" name="view" id="view-studio" value="studio">
+<input class="mode-radio" type="radio" name="mode" id="mode-all" value="all" checked><input class="mode-radio" type="radio" name="mode" id="mode-essential" value="essential"><input class="mode-radio" type="radio" name="mode" id="mode-left" value="left">
+<div class="app">
+<header class="appbar"><div class="title-row"><div class="mark">🎨</div><div class="title-copy"><span class="eyebrow">MICHAELS RUN</span><h1>Toddler Art Studio</h1></div><div class="progress-pill"><div><strong data-done>0</strong><span>/ <span data-total>45</span></span></div></div></div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div></header>
+<noscript><div class="nojs"><b>Preview mode:</b> the full shopping list is below and checkboxes still work in this view. Open the downloaded file in a browser to save checkmarks and use search/filters.</div></noscript>
+<main class="content">
+<section class="screen active" id="shopScreen">
+  <div class="controls"><div class="search-wrap"><span class="search-icon">⌕</span><input class="search" id="search" type="search" placeholder="Find markers, paint, paper…" autocomplete="off"><button class="clear-search" id="clearSearch" type="button" aria-label="Clear">×</button></div>
+  <div class="mode-tabs"><label for="mode-all">All <b>45</b></label><label for="mode-essential">Must buy <b>25</b></label><label for="mode-left">Still need <b data-left>45</b></label></div>
+  <div class="category-scroll"><button type="button" class="cat-btn active" data-cat="All">All</button><button type="button" class="cat-btn" data-cat="Drawing">Drawing</button><button type="button" class="cat-btn" data-cat="Paint">Paint</button><button type="button" class="cat-btn" data-cat="Tools">Tools</button><button type="button" class="cat-btn" data-cat="Paper">Paper</button><button type="button" class="cat-btn" data-cat="Projects">Projects</button><button type="button" class="cat-btn" data-cat="Collage">Collage</button><button type="button" class="cat-btn" data-cat="Sensory">Sensory</button><button type="button" class="cat-btn" data-cat="Storage">Storage</button><button type="button" class="cat-btn" data-cat="Parent">Parent</button></div><div class="filter-banner" id="filterBanner"><span id="activityFilterText"></span><button type="button" id="clearActivity">Show all</button></div></div>
+  <section class="shop-section" data-section="Drawing">
+      <div class="section-head"><span class="section-icon">✏️</span><div><h2>Drawing</h2><span class="section-count" data-section-count="Drawing">5 items</span></div></div>
+      <div class="items"><label class="item shop-item" data-item-row="markers-broad" data-cat="Drawing" data-essential="true" data-search="washable broad-line markers crayola ultra-clean or similar; one big pack + backup is perfect. drawing">
+      <input class="item-check" type="checkbox" data-item="markers-broad" aria-label="Check off Washable broad-line markers">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable broad-line markers <span class="must">MUST</span></span><span class="item-note">Crayola Ultra-Clean or similar; one big pack + backup is perfect.</span></span>
+      <span class="qty">2–3 packs</span>
+    </label>
+<label class="item shop-item" data-item-row="dot-markers" data-cat="Drawing" data-essential="true" data-search="washable dot markers big grip, instant dots; great low-frustration option. drawing">
+      <input class="item-check" type="checkbox" data-item="dot-markers" aria-label="Check off Washable dot markers">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable dot markers <span class="must">MUST</span></span><span class="item-note">Big grip, instant dots; great low-frustration option.</span></span>
+      <span class="qty">1 set</span>
+    </label>
+<label class="item shop-item" data-item-row="twistables" data-cat="Drawing" data-essential="true" data-search="crayola twistables colored pencils no sharpening; easier than traditional colored pencils. drawing">
+      <input class="item-check" type="checkbox" data-item="twistables" aria-label="Check off Crayola Twistables colored pencils">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Crayola Twistables colored pencils <span class="must">MUST</span></span><span class="item-note">No sharpening; easier than traditional colored pencils.</span></span>
+      <span class="qty">1 set</span>
+    </label>
+<label class="item shop-item" data-item-row="jumbo-crayons" data-cat="Drawing" data-essential="true" data-search="jumbo crayons easy grip for little hands. drawing">
+      <input class="item-check" type="checkbox" data-item="jumbo-crayons" aria-label="Check off Jumbo crayons">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Jumbo crayons <span class="must">MUST</span></span><span class="item-note">Easy grip for little hands.</span></span>
+      <span class="qty">1 box</span>
+    </label>
+<label class="item shop-item" data-item-row="window-markers" data-cat="Drawing" data-essential="false" data-search="washable window markers only use products specifically labeled for glass. drawing">
+      <input class="item-check" type="checkbox" data-item="window-markers" aria-label="Check off Washable window markers">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable window markers </span><span class="item-note">Only use products specifically labeled for glass.</span></span>
+      <span class="qty">1 set</span>
+    </label></div>
+    </section><section class="shop-section" data-section="Paint">
+      <div class="section-head"><span class="section-icon">🎨</span><div><h2>Paint</h2><span class="section-count" data-section-count="Paint">5 items</span></div></div>
+      <div class="items"><label class="item shop-item" data-item-row="tempera-colors" data-cat="Paint" data-essential="true" data-search="washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black everyday paint for paper, cardboard, canvas and unfinished wood. paint">
+      <input class="item-check" type="checkbox" data-item="tempera-colors" aria-label="Check off Washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black <span class="must">MUST</span></span><span class="item-note">Everyday paint for paper, cardboard, canvas and unfinished wood.</span></span>
+      <span class="qty">1 each</span>
+    </label>
+<label class="item shop-item" data-item-row="tempera-white" data-cat="Paint" data-essential="true" data-search="washable tempera — white white disappears fast when color mixing starts. paint">
+      <input class="item-check" type="checkbox" data-item="tempera-white" aria-label="Check off Washable tempera — WHITE">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable tempera — WHITE <span class="must">MUST</span></span><span class="item-note">White disappears fast when color mixing starts.</span></span>
+      <span class="qty">2 bottles</span>
+    </label>
+<label class="item shop-item" data-item-row="paint-set" data-cat="Paint" data-essential="false" data-search="optional 10-color washable paint set small bottles for fast sessions and trying colors. paint">
+      <input class="item-check" type="checkbox" data-item="paint-set" aria-label="Check off Optional 10-color washable paint set">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Optional 10-color washable paint set </span><span class="item-note">Small bottles for fast sessions and trying colors.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item shop-item" data-item-row="paint-sticks" data-cat="Paint" data-essential="true" data-search="kids washable paint sticks painting feel with almost no setup or cleanup. paint">
+      <input class="item-check" type="checkbox" data-item="paint-sticks" aria-label="Check off Kids washable paint sticks">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Kids washable paint sticks <span class="must">MUST</span></span><span class="item-note">Painting feel with almost no setup or cleanup.</span></span>
+      <span class="qty">1–2 sets</span>
+    </label>
+<label class="item shop-item" data-item-row="watercolors" data-cat="Paint" data-essential="true" data-search="washable watercolor set for secret-crayon resist and lighter painting. paint">
+      <input class="item-check" type="checkbox" data-item="watercolors" aria-label="Check off Washable watercolor set">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable watercolor set <span class="must">MUST</span></span><span class="item-note">For secret-crayon resist and lighter painting.</span></span>
+      <span class="qty">1</span>
+    </label></div>
+    </section><section class="shop-section" data-section="Tools">
+      <div class="section-head"><span class="section-icon">🖌️</span><div><h2>Tools</h2><span class="section-count" data-section-count="Tools">7 items</span></div></div>
+      <div class="items"><label class="item shop-item" data-item-row="big-brushes" data-cat="Tools" data-essential="true" data-search="big-handle toddler paint brushes large round handles are much easier to control. tools">
+      <input class="item-check" type="checkbox" data-item="big-brushes" aria-label="Check off Big-handle toddler paint brushes">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Big-handle toddler paint brushes <span class="must">MUST</span></span><span class="item-note">Large round handles are much easier to control.</span></span>
+      <span class="qty">2 sets</span>
+    </label>
+<label class="item shop-item" data-item-row="foam-brushes" data-cat="Tools" data-essential="true" data-search="foam brush multipack fast coverage on wood and canvas. tools">
+      <input class="item-check" type="checkbox" data-item="foam-brushes" aria-label="Check off Foam brush multipack">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Foam brush multipack <span class="must">MUST</span></span><span class="item-note">Fast coverage on wood and canvas.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item shop-item" data-item-row="craft-sponges" data-cat="Tools" data-essential="false" data-search="large craft sponge pack for giant stamps and texture printing. tools">
+      <input class="item-check" type="checkbox" data-item="craft-sponges" aria-label="Check off Large craft sponge pack">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Large craft sponge pack </span><span class="item-note">For giant stamps and texture printing.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item shop-item" data-item-row="palette" data-cat="Tools" data-essential="true" data-search="divided palette / paint tray keeps tiny amounts of paint separated. tools">
+      <input class="item-check" type="checkbox" data-item="palette" aria-label="Check off Divided palette / paint tray">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Divided palette / paint tray <span class="must">MUST</span></span><span class="item-note">Keeps tiny amounts of paint separated.</span></span>
+      <span class="qty">1–2</span>
+    </label>
+<label class="item shop-item" data-item-row="rinse-cups" data-cat="Tools" data-essential="false" data-search="rinse cups short, stable cups are easiest. tools">
+      <input class="item-check" type="checkbox" data-item="rinse-cups" aria-label="Check off Rinse cups">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Rinse cups </span><span class="item-note">Short, stable cups are easiest.</span></span>
+      <span class="qty">2</span>
+    </label>
+<label class="item shop-item" data-item-row="smock" data-cat="Tools" data-essential="true" data-search="washable art smock worth buying once. tools">
+      <input class="item-check" type="checkbox" data-item="smock" aria-label="Check off Washable art smock">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable art smock <span class="must">MUST</span></span><span class="item-note">Worth buying once.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item shop-item" data-item-row="drop-cloth" data-cat="Tools" data-essential="true" data-search="plastic table cover / drop cloth makes yes-to-paint much easier. tools">
+      <input class="item-check" type="checkbox" data-item="drop-cloth" aria-label="Check off Plastic table cover / drop cloth">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Plastic table cover / drop cloth <span class="must">MUST</span></span><span class="item-note">Makes yes-to-paint much easier.</span></span>
+      <span class="qty">1</span>
+    </label></div>
+    </section><section class="shop-section" data-section="Paper">
+      <div class="section-head"><span class="section-icon">📄</span><div><h2>Paper</h2><span class="section-count" data-section-count="Paper">7 items</span></div></div>
+      <div class="items"><label class="item shop-item" data-item-row="paper-roll" data-cat="Paper" data-essential="true" data-search="creatology easel paper roll, 18 × 75 ft best supply in the cart for giant floor/table projects. paper">
+      <input class="item-check" type="checkbox" data-item="paper-roll" aria-label="Check off Creatology easel paper roll, 18 × 75 ft">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Creatology easel paper roll, 18 × 75 ft <span class="must">MUST</span></span><span class="item-note">Best supply in the cart for giant floor/table projects.</span></span>
+      <span class="qty">2 rolls</span>
+    </label>
+<label class="item shop-item" data-item-row="drawing-pad" data-cat="Paper" data-essential="true" data-search="kids drawing paper pads daily grab-and-go drawing surface. paper">
+      <input class="item-check" type="checkbox" data-item="drawing-pad" aria-label="Check off Kids drawing paper pads">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Kids drawing paper pads <span class="must">MUST</span></span><span class="item-note">Daily grab-and-go drawing surface.</span></span>
+      <span class="qty">1–2</span>
+    </label>
+<label class="item shop-item" data-item-row="construction-paper" data-cat="Paper" data-essential="true" data-search="construction paper assortment for collage, puppets and color play. paper">
+      <input class="item-check" type="checkbox" data-item="construction-paper" aria-label="Check off Construction paper assortment">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Construction paper assortment <span class="must">MUST</span></span><span class="item-note">For collage, puppets and color play.</span></span>
+      <span class="qty">1 pack</span>
+    </label>
+<label class="item shop-item" data-item-row="cardstock" data-cat="Paper" data-essential="true" data-search="heavy white cardstock better for wet paint, stamping and keepsakes. paper">
+      <input class="item-check" type="checkbox" data-item="cardstock" aria-label="Check off Heavy white cardstock">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Heavy white cardstock <span class="must">MUST</span></span><span class="item-note">Better for wet paint, stamping and keepsakes.</span></span>
+      <span class="qty">1 pack</span>
+    </label>
+<label class="item shop-item" data-item-row="watercolor-paper" data-cat="Paper" data-essential="false" data-search="watercolor paper / kids paint pad stays sturdier for watercolor. paper">
+      <input class="item-check" type="checkbox" data-item="watercolor-paper" aria-label="Check off Watercolor paper / kids paint pad">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Watercolor paper / kids paint pad </span><span class="item-note">Stays sturdier for watercolor.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item shop-item" data-item-row="canvas-panels" data-cat="Paper" data-essential="true" data-search="9 × 12 canvas panels cheap durable surface for keepsakes. paper">
+      <input class="item-check" type="checkbox" data-item="canvas-panels" aria-label="Check off 9 × 12 canvas panels">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">9 × 12 canvas panels <span class="must">MUST</span></span><span class="item-note">Cheap durable surface for keepsakes.</span></span>
+      <span class="qty">2 multipacks</span>
+    </label>
+<label class="item shop-item" data-item-row="poster-board" data-cat="Paper" data-essential="false" data-search="poster board / large sheets low-cost giant collage surface. paper">
+      <input class="item-check" type="checkbox" data-item="poster-board" aria-label="Check off Poster board / large sheets">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Poster board / large sheets </span><span class="item-note">Low-cost giant collage surface.</span></span>
+      <span class="qty">a few</span>
+    </label></div>
+    </section><section class="shop-section" data-section="Projects">
+      <div class="section-head"><span class="section-icon">🧩</span><div><h2>Projects</h2><span class="section-count" data-section-count="Projects">3 items</span></div></div>
+      <div class="items"><label class="item shop-item" data-item-row="wood-shapes" data-cat="Projects" data-essential="true" data-search="large unfinished wood shapes / animals choose chunky pieces and verify package age guidance. projects">
+      <input class="item-check" type="checkbox" data-item="wood-shapes" aria-label="Check off Large unfinished wood shapes / animals">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Large unfinished wood shapes / animals <span class="must">MUST</span></span><span class="item-note">Choose chunky pieces and verify package age guidance.</span></span>
+      <span class="qty">10–20</span>
+    </label>
+<label class="item shop-item" data-item-row="wood-boxes" data-cat="Projects" data-essential="false" data-search="unfinished wooden boxes or frames paintable keepsakes; verify age guidance. projects">
+      <input class="item-check" type="checkbox" data-item="wood-boxes" aria-label="Check off Unfinished wooden boxes or frames">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Unfinished wooden boxes or frames </span><span class="item-note">Paintable keepsakes; verify age guidance.</span></span>
+      <span class="qty">1–2</span>
+    </label>
+<label class="item shop-item" data-item-row="wood-letters" data-cat="Projects" data-essential="false" data-search="large wooden letters spell her name if the pieces are age-appropriate. projects">
+      <input class="item-check" type="checkbox" data-item="wood-letters" aria-label="Check off Large wooden letters">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Large wooden letters </span><span class="item-note">Spell her name if the pieces are age-appropriate.</span></span>
+      <span class="qty">as needed</span>
+    </label></div>
+    </section><section class="shop-section" data-section="Collage">
+      <div class="section-head"><span class="section-icon">✂️</span><div><h2>Collage</h2><span class="section-count" data-section-count="Collage">6 items</span></div></div>
+      <div class="items"><label class="item shop-item" data-item-row="foam-stickers" data-cat="Collage" data-essential="true" data-search="large foam stickers choose large pieces rated for her age. collage">
+      <input class="item-check" type="checkbox" data-item="foam-stickers" aria-label="Check off Large foam stickers">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Large foam stickers <span class="must">MUST</span></span><span class="item-note">Choose large pieces rated for her age.</span></span>
+      <span class="qty">2 packs</span>
+    </label>
+<label class="item shop-item" data-item-row="glue-sticks" data-cat="Collage" data-essential="true" data-search="washable glue sticks easy, low-mess sticking. collage">
+      <input class="item-check" type="checkbox" data-item="glue-sticks" aria-label="Check off Washable glue sticks">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable glue sticks <span class="must">MUST</span></span><span class="item-note">Easy, low-mess sticking.</span></span>
+      <span class="qty">3–6</span>
+    </label>
+<label class="item shop-item" data-item-row="school-glue" data-cat="Collage" data-essential="false" data-search="washable school glue useful for parent-assisted projects. collage">
+      <input class="item-check" type="checkbox" data-item="school-glue" aria-label="Check off Washable school glue">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable school glue </span><span class="item-note">Useful for parent-assisted projects.</span></span>
+      <span class="qty">1 bottle</span>
+    </label>
+<label class="item shop-item" data-item-row="tissue-paper" data-cat="Collage" data-essential="false" data-search="tissue paper sheets use large pieces; supervise. collage">
+      <input class="item-check" type="checkbox" data-item="tissue-paper" aria-label="Check off Tissue paper sheets">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Tissue paper sheets </span><span class="item-note">Use large pieces; supervise.</span></span>
+      <span class="qty">1 pack</span>
+    </label>
+<label class="item shop-item" data-item-row="felt-foam" data-cat="Collage" data-essential="false" data-search="felt / craft foam sheets large pieces only; supervise. collage">
+      <input class="item-check" type="checkbox" data-item="felt-foam" aria-label="Check off Felt / craft foam sheets">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Felt / craft foam sheets </span><span class="item-note">Large pieces only; supervise.</span></span>
+      <span class="qty">1 pack</span>
+    </label>
+<label class="item shop-item" data-item-row="paper-bags" data-cat="Collage" data-essential="false" data-search="paper lunch bags instant puppet bodies. collage">
+      <input class="item-check" type="checkbox" data-item="paper-bags" aria-label="Check off Paper lunch bags">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Paper lunch bags </span><span class="item-note">Instant puppet bodies.</span></span>
+      <span class="qty">1 pack</span>
+    </label></div>
+    </section><section class="shop-section" data-section="Sensory">
+      <div class="section-head"><span class="section-icon">👐</span><div><h2>Sensory</h2><span class="section-count" data-section-count="Sensory">2 items</span></div></div>
+      <div class="items"><label class="item shop-item" data-item-row="playdoh" data-cat="Sensory" data-essential="true" data-search="play-doh starter set / full-size cans choose an age-appropriate standard dough set. sensory">
+      <input class="item-check" type="checkbox" data-item="playdoh" aria-label="Check off Play-Doh starter set / full-size cans">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Play-Doh starter set / full-size cans <span class="must">MUST</span></span><span class="item-note">Choose an age-appropriate standard dough set.</span></span>
+      <span class="qty">6–8 cans</span>
+    </label>
+<label class="item shop-item" data-item-row="dough-tools" data-cat="Sensory" data-essential="false" data-search="large play-doh rollers / cutters only tools specifically age-rated for her. sensory">
+      <input class="item-check" type="checkbox" data-item="dough-tools" aria-label="Check off Large Play-Doh rollers / cutters">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Large Play-Doh rollers / cutters </span><span class="item-note">Only tools specifically age-rated for her.</span></span>
+      <span class="qty">1 set</span>
+    </label></div>
+    </section><section class="shop-section" data-section="Storage">
+      <div class="section-head"><span class="section-icon">🧺</span><div><h2>Storage</h2><span class="section-count" data-section-count="Storage">6 items</span></div></div>
+      <div class="items"><label class="item shop-item" data-item-row="caddy" data-cat="Storage" data-essential="true" data-search="open art caddy daily markers, crayons, glue and a small pad. storage">
+      <input class="item-check" type="checkbox" data-item="caddy" aria-label="Check off Open art caddy">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Open art caddy <span class="must">MUST</span></span><span class="item-note">Daily markers, crayons, glue and a small pad.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item shop-item" data-item-row="paint-bin" data-cat="Storage" data-essential="false" data-search="clear lidded paint bin keeps paint contained and parent-controlled. storage">
+      <input class="item-check" type="checkbox" data-item="paint-bin" aria-label="Check off Clear lidded PAINT bin">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Clear lidded PAINT bin </span><span class="item-note">Keeps paint contained and parent-controlled.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item shop-item" data-item-row="project-bin" data-cat="Storage" data-essential="false" data-search="clear lidded project surfaces bin wood, canvas, cardboard pieces. storage">
+      <input class="item-check" type="checkbox" data-item="project-bin" aria-label="Check off Clear lidded PROJECT SURFACES bin">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Clear lidded PROJECT SURFACES bin </span><span class="item-note">Wood, canvas, cardboard pieces.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item shop-item" data-item-row="paper-bin" data-cat="Storage" data-essential="false" data-search="paper storage bin / vertical file prevents paper from becoming a bent pile. storage">
+      <input class="item-check" type="checkbox" data-item="paper-bin" aria-label="Check off Paper storage bin / vertical file">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Paper storage bin / vertical file </span><span class="item-note">Prevents paper from becoming a bent pile.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item shop-item" data-item-row="drying-tray" data-cat="Storage" data-essential="true" data-search="drying tray / inexpensive sheet pan move wet art without touching it. storage">
+      <input class="item-check" type="checkbox" data-item="drying-tray" aria-label="Check off Drying tray / inexpensive sheet pan">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Drying tray / inexpensive sheet pan <span class="must">MUST</span></span><span class="item-note">Move wet art without touching it.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item shop-item" data-item-row="zip-bags" data-cat="Storage" data-essential="false" data-search="zip bags for reusable activity parts great for sponge shapes and small sets. storage">
+      <input class="item-check" type="checkbox" data-item="zip-bags" aria-label="Check off Zip bags for reusable activity parts">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Zip bags for reusable activity parts </span><span class="item-note">Great for sponge shapes and small sets.</span></span>
+      <span class="qty">1 box</span>
+    </label></div>
+    </section><section class="shop-section" data-section="Parent">
+      <div class="section-head"><span class="section-icon">🔒</span><div><h2>Parent</h2><span class="section-count" data-section-count="Parent">4 items</span></div></div>
+      <div class="items"><label class="item shop-item" data-item-row="painters-tape" data-cat="Parent" data-essential="true" data-search="painter&#x27;s tape floor murals, tape-resist canvases, holding paper still. parent">
+      <input class="item-check" type="checkbox" data-item="painters-tape" aria-label="Check off Painter&#x27;s tape">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Painter&#x27;s tape <span class="must">MUST</span></span><span class="item-note">Floor murals, tape-resist canvases, holding paper still.</span></span>
+      <span class="qty">1 roll</span>
+    </label>
+<label class="item shop-item" data-item-row="mod-podge" data-cat="Parent" data-essential="false" data-search="mod podge / clear sealer parent-only finishing coat for dry wooden projects. parent">
+      <input class="item-check" type="checkbox" data-item="mod-podge" aria-label="Check off Mod Podge / clear sealer">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Mod Podge / clear sealer </span><span class="item-note">Parent-only finishing coat for dry wooden projects.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item shop-item" data-item-row="permanent-marker" data-cat="Parent" data-essential="false" data-search="permanent marker parent-only: names, dates and ages on backs. parent">
+      <input class="item-check" type="checkbox" data-item="permanent-marker" aria-label="Check off Permanent marker">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Permanent marker </span><span class="item-note">Parent-only: names, dates and ages on backs.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item shop-item" data-item-row="adult-scissors" data-cat="Parent" data-essential="false" data-search="adult scissors / cardboard cutter parent-only setup tool. parent">
+      <input class="item-check" type="checkbox" data-item="adult-scissors" aria-label="Check off Adult scissors / cardboard cutter">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Adult scissors / cardboard cutter </span><span class="item-note">Parent-only setup tool.</span></span>
+      <span class="qty">1</span>
+    </label></div>
+    </section><div id="empty" class="empty">Nothing matches that filter.</div><div class="list-footer"><span><b data-left>45</b> still to buy</span><button id="resetBtn" class="reset" type="button">Reset checks</button></div>
+</section>
+<section class="screen" id="activitiesScreen"><div class="screen-title"><span class="kicker">16 ACTIVITIES</span><h2>What are we making?</h2><p>Open one when you get home. Every supply inside is linked to the same master checklist.</p></div><div class="activity-list"><details class="activity" data-activity="mural" data-buy="paper-roll,markers-broad,jumbo-crayons,dot-markers,painters-tape">
+      <summary>
+        <span class="activity-icon">🖍️</span>
+        <span class="activity-summary"><strong>The Giant Floor Mural</strong><small>20–45 min · Low–medium mess · 5 store items</small></span>
+        <span class="chev">⌄</span>
+      </summary>
+      <div class="activity-body">
+        <p class="activity-desc">Tape down a huge piece of paper and let her draw with her whole body instead of staying inside a little page.</p>
+        <button type="button" class="shop-activity" data-shop-activity="mural">Shop just this activity <span>→</span></button>
+        <h3>BUY AT MICHAELS</h3>
+        <div class="activity-buy"><label class="item activity-item" data-item-row="paper-roll" data-cat="Paper" data-essential="true" data-search="creatology easel paper roll, 18 × 75 ft best supply in the cart for giant floor/table projects. paper">
+      <input class="item-check" type="checkbox" data-item="paper-roll" aria-label="Check off Creatology easel paper roll, 18 × 75 ft">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Creatology easel paper roll, 18 × 75 ft <span class="must">MUST</span></span><span class="item-note">Best supply in the cart for giant floor/table projects.</span></span>
+      <span class="qty">2 rolls</span>
+    </label>
+<label class="item activity-item" data-item-row="markers-broad" data-cat="Drawing" data-essential="true" data-search="washable broad-line markers crayola ultra-clean or similar; one big pack + backup is perfect. drawing">
+      <input class="item-check" type="checkbox" data-item="markers-broad" aria-label="Check off Washable broad-line markers">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable broad-line markers <span class="must">MUST</span></span><span class="item-note">Crayola Ultra-Clean or similar; one big pack + backup is perfect.</span></span>
+      <span class="qty">2–3 packs</span>
+    </label>
+<label class="item activity-item" data-item-row="jumbo-crayons" data-cat="Drawing" data-essential="true" data-search="jumbo crayons easy grip for little hands. drawing">
+      <input class="item-check" type="checkbox" data-item="jumbo-crayons" aria-label="Check off Jumbo crayons">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Jumbo crayons <span class="must">MUST</span></span><span class="item-note">Easy grip for little hands.</span></span>
+      <span class="qty">1 box</span>
+    </label>
+<label class="item activity-item" data-item-row="dot-markers" data-cat="Drawing" data-essential="true" data-search="washable dot markers big grip, instant dots; great low-frustration option. drawing">
+      <input class="item-check" type="checkbox" data-item="dot-markers" aria-label="Check off Washable dot markers">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable dot markers <span class="must">MUST</span></span><span class="item-note">Big grip, instant dots; great low-frustration option.</span></span>
+      <span class="qty">1 set</span>
+    </label>
+<label class="item activity-item" data-item-row="painters-tape" data-cat="Parent" data-essential="true" data-search="painter&#x27;s tape floor murals, tape-resist canvases, holding paper still. parent">
+      <input class="item-check" type="checkbox" data-item="painters-tape" aria-label="Check off Painter&#x27;s tape">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Painter&#x27;s tape <span class="must">MUST</span></span><span class="item-note">Floor murals, tape-resist canvases, holding paper still.</span></span>
+      <span class="qty">1 roll</span>
+    </label></div>
+        <h3>FROM HOME</h3><ul class="plain-list"><li>Hard floor or large table</li><li>Optional toy animals/cars for tracing</li></ul>
+        <h3>DO THIS</h3><ol class="steps"><li><span>1</span><p>Roll out 5–8 feet of paper and tape every edge flat.</p></li><li><span>2</span><p>Put out only 6–10 markers/crayons at first.</p></li><li><span>3</span><p>Draw one road, circle, house, or giant squiggle to invite her in — then let her take over.</p></li><li><span>4</span><p>Add dot markers halfway through so the activity feels new again.</p></li><li><span>5</span><p>Write the date and let her add one final giant mark before you roll it up.</p></li></ol>
+        <h3>EXTRA IDEAS</h3><ul class="idea-list"><li>Trace her body outline and let her color inside it.</li><li>Draw roads and parking spaces for toy cars.</li><li>Make one mural every month and compare them over time.</li><li>Cut one section into greeting cards or hang a favorite section at toddler eye level.</li></ul>
+      </div>
+    </details><details class="activity" data-activity="dots" data-buy="dot-markers,cardstock,foam-stickers">
+      <summary>
+        <span class="activity-icon">🔴</span>
+        <span class="activity-summary"><strong>Dot Marker Rainbow Hunt</strong><small>10–25 min · Low mess · 3 store items</small></span>
+        <span class="chev">⌄</span>
+      </summary>
+      <div class="activity-body">
+        <p class="activity-desc">A very easy, very satisfying color game using big washable dot markers.</p>
+        <button type="button" class="shop-activity" data-shop-activity="dots">Shop just this activity <span>→</span></button>
+        <h3>BUY AT MICHAELS</h3>
+        <div class="activity-buy"><label class="item activity-item" data-item-row="dot-markers" data-cat="Drawing" data-essential="true" data-search="washable dot markers big grip, instant dots; great low-frustration option. drawing">
+      <input class="item-check" type="checkbox" data-item="dot-markers" aria-label="Check off Washable dot markers">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable dot markers <span class="must">MUST</span></span><span class="item-note">Big grip, instant dots; great low-frustration option.</span></span>
+      <span class="qty">1 set</span>
+    </label>
+<label class="item activity-item" data-item-row="cardstock" data-cat="Paper" data-essential="true" data-search="heavy white cardstock better for wet paint, stamping and keepsakes. paper">
+      <input class="item-check" type="checkbox" data-item="cardstock" aria-label="Check off Heavy white cardstock">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Heavy white cardstock <span class="must">MUST</span></span><span class="item-note">Better for wet paint, stamping and keepsakes.</span></span>
+      <span class="qty">1 pack</span>
+    </label>
+<label class="item activity-item" data-item-row="foam-stickers" data-cat="Collage" data-essential="true" data-search="large foam stickers choose large pieces rated for her age. collage">
+      <input class="item-check" type="checkbox" data-item="foam-stickers" aria-label="Check off Large foam stickers">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Large foam stickers <span class="must">MUST</span></span><span class="item-note">Choose large pieces rated for her age.</span></span>
+      <span class="qty">2 packs</span>
+    </label></div>
+        <h3>FROM HOME</h3><ul class="plain-list"><li>Masking/painter’s tape</li><li>A few household objects in different colors</li></ul>
+        <h3>DO THIS</h3><ol class="steps"><li><span>1</span><p>Make six large circles or simple blobs on the paper.</p></li><li><span>2</span><p>Ask her to fill each area with dots — matching colors if she wants, random if she does not.</p></li><li><span>3</span><p>Place a red toy, blue cup, yellow block, etc. nearby and play find-that-color.</p></li><li><span>4</span><p>Let dots overlap to discover new color combinations.</p></li><li><span>5</span><p>Stop while she is still having fun rather than trying to finish the sheet.</p></li></ol>
+        <h3>EXTRA IDEAS</h3><ul class="idea-list"><li>Make a giant rainbow on easel paper.</li><li>Dot along the first letter of her name.</li><li>Use finished pages as wrapping paper for family gifts.</li><li>Put the best sheet in a simple frame.</li></ul>
+      </div>
+    </details><details class="activity" data-activity="wood" data-buy="wood-shapes,tempera-colors,tempera-white,big-brushes,foam-brushes,palette,mod-podge">
+      <summary>
+        <span class="activity-icon">🦊</span>
+        <span class="activity-summary"><strong>Wooden Animal Painting Workshop</strong><small>25–45 min + dry · Medium mess · 7 store items</small></span>
+        <span class="chev">⌄</span>
+      </summary>
+      <div class="activity-body">
+        <p class="activity-desc">Paint a few chunky unfinished wooden animals or shapes, then use them later for pretend play.</p>
+        <button type="button" class="shop-activity" data-shop-activity="wood">Shop just this activity <span>→</span></button>
+        <h3>BUY AT MICHAELS</h3>
+        <div class="activity-buy"><label class="item activity-item" data-item-row="wood-shapes" data-cat="Projects" data-essential="true" data-search="large unfinished wood shapes / animals choose chunky pieces and verify package age guidance. projects">
+      <input class="item-check" type="checkbox" data-item="wood-shapes" aria-label="Check off Large unfinished wood shapes / animals">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Large unfinished wood shapes / animals <span class="must">MUST</span></span><span class="item-note">Choose chunky pieces and verify package age guidance.</span></span>
+      <span class="qty">10–20</span>
+    </label>
+<label class="item activity-item" data-item-row="tempera-colors" data-cat="Paint" data-essential="true" data-search="washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black everyday paint for paper, cardboard, canvas and unfinished wood. paint">
+      <input class="item-check" type="checkbox" data-item="tempera-colors" aria-label="Check off Washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black <span class="must">MUST</span></span><span class="item-note">Everyday paint for paper, cardboard, canvas and unfinished wood.</span></span>
+      <span class="qty">1 each</span>
+    </label>
+<label class="item activity-item" data-item-row="tempera-white" data-cat="Paint" data-essential="true" data-search="washable tempera — white white disappears fast when color mixing starts. paint">
+      <input class="item-check" type="checkbox" data-item="tempera-white" aria-label="Check off Washable tempera — WHITE">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable tempera — WHITE <span class="must">MUST</span></span><span class="item-note">White disappears fast when color mixing starts.</span></span>
+      <span class="qty">2 bottles</span>
+    </label>
+<label class="item activity-item" data-item-row="big-brushes" data-cat="Tools" data-essential="true" data-search="big-handle toddler paint brushes large round handles are much easier to control. tools">
+      <input class="item-check" type="checkbox" data-item="big-brushes" aria-label="Check off Big-handle toddler paint brushes">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Big-handle toddler paint brushes <span class="must">MUST</span></span><span class="item-note">Large round handles are much easier to control.</span></span>
+      <span class="qty">2 sets</span>
+    </label>
+<label class="item activity-item" data-item-row="foam-brushes" data-cat="Tools" data-essential="true" data-search="foam brush multipack fast coverage on wood and canvas. tools">
+      <input class="item-check" type="checkbox" data-item="foam-brushes" aria-label="Check off Foam brush multipack">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Foam brush multipack <span class="must">MUST</span></span><span class="item-note">Fast coverage on wood and canvas.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item activity-item" data-item-row="palette" data-cat="Tools" data-essential="true" data-search="divided palette / paint tray keeps tiny amounts of paint separated. tools">
+      <input class="item-check" type="checkbox" data-item="palette" aria-label="Check off Divided palette / paint tray">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Divided palette / paint tray <span class="must">MUST</span></span><span class="item-note">Keeps tiny amounts of paint separated.</span></span>
+      <span class="qty">1–2</span>
+    </label>
+<label class="item activity-item" data-item-row="mod-podge" data-cat="Parent" data-essential="false" data-search="mod podge / clear sealer parent-only finishing coat for dry wooden projects. parent">
+      <input class="item-check" type="checkbox" data-item="mod-podge" aria-label="Check off Mod Podge / clear sealer">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Mod Podge / clear sealer </span><span class="item-note">Parent-only finishing coat for dry wooden projects.</span></span>
+      <span class="qty">1</span>
+    </label></div>
+        <h3>FROM HOME</h3><ul class="plain-list"><li>Cookie sheet or cardboard drying surface</li></ul>
+        <h3>DO THIS</h3><ol class="steps"><li><span>1</span><p>Choose only 2–4 wooden pieces for one session.</p></li><li><span>2</span><p>Put small puddles of 3–5 paint colors on a palette.</p></li><li><span>3</span><p>Let her paint every side she can reach. There is no wrong color.</p></li><li><span>4</span><p>Dry on a tray; flip later and paint the underside in a second session.</p></li><li><span>5</span><p>If you want the piece to last, an adult can seal it after the paint is completely dry.</p></li></ol>
+        <h3>EXTRA IDEAS</h3><ul class="idea-list"><li>Paint a set of animals that becomes her own play collection.</li><li>Paint a wooden box to store the finished animals.</li><li>Write the date underneath.</li><li>Photograph her holding each piece before it gets played with.</li></ul>
+      </div>
+    </details><details class="activity" data-activity="tape" data-buy="canvas-panels,tempera-colors,big-brushes,foam-brushes,painters-tape,smock">
+      <summary>
+        <span class="activity-icon">🖼️</span>
+        <span class="activity-summary"><strong>Tape-Resist Canvas</strong><small>20–35 min + dry · Medium mess · 6 store items</small></span>
+        <span class="chev">⌄</span>
+      </summary>
+      <div class="activity-body">
+        <p class="activity-desc">You make simple tape lines; she paints everything. Peeling the tape gives a dramatic reveal.</p>
+        <button type="button" class="shop-activity" data-shop-activity="tape">Shop just this activity <span>→</span></button>
+        <h3>BUY AT MICHAELS</h3>
+        <div class="activity-buy"><label class="item activity-item" data-item-row="canvas-panels" data-cat="Paper" data-essential="true" data-search="9 × 12 canvas panels cheap durable surface for keepsakes. paper">
+      <input class="item-check" type="checkbox" data-item="canvas-panels" aria-label="Check off 9 × 12 canvas panels">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">9 × 12 canvas panels <span class="must">MUST</span></span><span class="item-note">Cheap durable surface for keepsakes.</span></span>
+      <span class="qty">2 multipacks</span>
+    </label>
+<label class="item activity-item" data-item-row="tempera-colors" data-cat="Paint" data-essential="true" data-search="washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black everyday paint for paper, cardboard, canvas and unfinished wood. paint">
+      <input class="item-check" type="checkbox" data-item="tempera-colors" aria-label="Check off Washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black <span class="must">MUST</span></span><span class="item-note">Everyday paint for paper, cardboard, canvas and unfinished wood.</span></span>
+      <span class="qty">1 each</span>
+    </label>
+<label class="item activity-item" data-item-row="big-brushes" data-cat="Tools" data-essential="true" data-search="big-handle toddler paint brushes large round handles are much easier to control. tools">
+      <input class="item-check" type="checkbox" data-item="big-brushes" aria-label="Check off Big-handle toddler paint brushes">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Big-handle toddler paint brushes <span class="must">MUST</span></span><span class="item-note">Large round handles are much easier to control.</span></span>
+      <span class="qty">2 sets</span>
+    </label>
+<label class="item activity-item" data-item-row="foam-brushes" data-cat="Tools" data-essential="true" data-search="foam brush multipack fast coverage on wood and canvas. tools">
+      <input class="item-check" type="checkbox" data-item="foam-brushes" aria-label="Check off Foam brush multipack">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Foam brush multipack <span class="must">MUST</span></span><span class="item-note">Fast coverage on wood and canvas.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item activity-item" data-item-row="painters-tape" data-cat="Parent" data-essential="true" data-search="painter&#x27;s tape floor murals, tape-resist canvases, holding paper still. parent">
+      <input class="item-check" type="checkbox" data-item="painters-tape" aria-label="Check off Painter&#x27;s tape">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Painter&#x27;s tape <span class="must">MUST</span></span><span class="item-note">Floor murals, tape-resist canvases, holding paper still.</span></span>
+      <span class="qty">1 roll</span>
+    </label>
+<label class="item activity-item" data-item-row="smock" data-cat="Tools" data-essential="true" data-search="washable art smock worth buying once. tools">
+      <input class="item-check" type="checkbox" data-item="smock" aria-label="Check off Washable art smock">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable art smock <span class="must">MUST</span></span><span class="item-note">Worth buying once.</span></span>
+      <span class="qty">1</span>
+    </label></div>
+        <h3>FROM HOME</h3><ul class="plain-list"><li>Tweezers or fingernail to lift tape after drying</li></ul>
+        <h3>DO THIS</h3><ol class="steps"><li><span>1</span><p>Before she starts, press painter’s tape across the canvas in a few big lines or make a simple letter.</p></li><li><span>2</span><p>Let her cover as much of the canvas as she wants.</p></li><li><span>3</span><p>Use a foam brush if she wants to cover large areas quickly.</p></li><li><span>4</span><p>Let the canvas dry.</p></li><li><span>5</span><p>Adult slowly peels the tape away for the reveal.</p></li></ol>
+        <h3>EXTRA IDEAS</h3><ul class="idea-list"><li>Tape the first letter of her name.</li><li>Do three canvases with different color families.</li><li>Make a pair: one for her room and one as a grandparent gift.</li><li>Repeat yearly using the same tape pattern.</li></ul>
+      </div>
+    </details><details class="activity" data-activity="cars" data-buy="paper-roll,tempera-colors,drop-cloth,palette">
+      <summary>
+        <span class="activity-icon">🚗</span>
+        <span class="activity-summary"><strong>Toy Car Paint Tracks</strong><small>15–30 min · Medium–high mess · 4 store items</small></span>
+        <span class="chev">⌄</span>
+      </summary>
+      <div class="activity-body">
+        <p class="activity-desc">Turn washable paint into a racetrack and make wheel patterns across a giant sheet.</p>
+        <button type="button" class="shop-activity" data-shop-activity="cars">Shop just this activity <span>→</span></button>
+        <h3>BUY AT MICHAELS</h3>
+        <div class="activity-buy"><label class="item activity-item" data-item-row="paper-roll" data-cat="Paper" data-essential="true" data-search="creatology easel paper roll, 18 × 75 ft best supply in the cart for giant floor/table projects. paper">
+      <input class="item-check" type="checkbox" data-item="paper-roll" aria-label="Check off Creatology easel paper roll, 18 × 75 ft">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Creatology easel paper roll, 18 × 75 ft <span class="must">MUST</span></span><span class="item-note">Best supply in the cart for giant floor/table projects.</span></span>
+      <span class="qty">2 rolls</span>
+    </label>
+<label class="item activity-item" data-item-row="tempera-colors" data-cat="Paint" data-essential="true" data-search="washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black everyday paint for paper, cardboard, canvas and unfinished wood. paint">
+      <input class="item-check" type="checkbox" data-item="tempera-colors" aria-label="Check off Washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black <span class="must">MUST</span></span><span class="item-note">Everyday paint for paper, cardboard, canvas and unfinished wood.</span></span>
+      <span class="qty">1 each</span>
+    </label>
+<label class="item activity-item" data-item-row="drop-cloth" data-cat="Tools" data-essential="true" data-search="plastic table cover / drop cloth makes yes-to-paint much easier. tools">
+      <input class="item-check" type="checkbox" data-item="drop-cloth" aria-label="Check off Plastic table cover / drop cloth">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Plastic table cover / drop cloth <span class="must">MUST</span></span><span class="item-note">Makes yes-to-paint much easier.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item activity-item" data-item-row="palette" data-cat="Tools" data-essential="true" data-search="divided palette / paint tray keeps tiny amounts of paint separated. tools">
+      <input class="item-check" type="checkbox" data-item="palette" aria-label="Check off Divided palette / paint tray">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Divided palette / paint tray <span class="must">MUST</span></span><span class="item-note">Keeps tiny amounts of paint separated.</span></span>
+      <span class="qty">1–2</span>
+    </label></div>
+        <h3>FROM HOME</h3><ul class="plain-list"><li>Washable plastic toy cars with chunky wheels</li><li>Tub or sink ready for immediate car washing</li></ul>
+        <h3>DO THIS</h3><ol class="steps"><li><span>1</span><p>Tape a long strip of paper to the floor.</p></li><li><span>2</span><p>Put a very thin layer of washable paint in a shallow tray.</p></li><li><span>3</span><p>Roll one car through paint, then across the paper.</p></li><li><span>4</span><p>Try two colors on different cars and cross the tracks.</p></li><li><span>5</span><p>Put cars directly into the sink/tub before the paint dries.</p></li></ol>
+        <h3>EXTRA IDEAS</h3><ul class="idea-list"><li>Draw roads with marker first.</li><li>Use different tire textures and compare the tracks.</li><li>Make a finish line and race two colors.</li><li>Cut the coolest tire-track section into a long wall strip.</li></ul>
+      </div>
+    </details><details class="activity" data-activity="animalprints" data-buy="tempera-colors,paper-roll,cardstock,palette">
+      <summary>
+        <span class="activity-icon">🦕</span>
+        <span class="activity-summary"><strong>Dinosaur + Animal Footprints</strong><small>15–30 min · Medium mess · 4 store items</small></span>
+        <span class="chev">⌄</span>
+      </summary>
+      <div class="activity-body">
+        <p class="activity-desc">Plastic animals become giant stamps. Great for cause-and-effect and pretend play.</p>
+        <button type="button" class="shop-activity" data-shop-activity="animalprints">Shop just this activity <span>→</span></button>
+        <h3>BUY AT MICHAELS</h3>
+        <div class="activity-buy"><label class="item activity-item" data-item-row="tempera-colors" data-cat="Paint" data-essential="true" data-search="washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black everyday paint for paper, cardboard, canvas and unfinished wood. paint">
+      <input class="item-check" type="checkbox" data-item="tempera-colors" aria-label="Check off Washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black <span class="must">MUST</span></span><span class="item-note">Everyday paint for paper, cardboard, canvas and unfinished wood.</span></span>
+      <span class="qty">1 each</span>
+    </label>
+<label class="item activity-item" data-item-row="paper-roll" data-cat="Paper" data-essential="true" data-search="creatology easel paper roll, 18 × 75 ft best supply in the cart for giant floor/table projects. paper">
+      <input class="item-check" type="checkbox" data-item="paper-roll" aria-label="Check off Creatology easel paper roll, 18 × 75 ft">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Creatology easel paper roll, 18 × 75 ft <span class="must">MUST</span></span><span class="item-note">Best supply in the cart for giant floor/table projects.</span></span>
+      <span class="qty">2 rolls</span>
+    </label>
+<label class="item activity-item" data-item-row="cardstock" data-cat="Paper" data-essential="true" data-search="heavy white cardstock better for wet paint, stamping and keepsakes. paper">
+      <input class="item-check" type="checkbox" data-item="cardstock" aria-label="Check off Heavy white cardstock">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Heavy white cardstock <span class="must">MUST</span></span><span class="item-note">Better for wet paint, stamping and keepsakes.</span></span>
+      <span class="qty">1 pack</span>
+    </label>
+<label class="item activity-item" data-item-row="palette" data-cat="Tools" data-essential="true" data-search="divided palette / paint tray keeps tiny amounts of paint separated. tools">
+      <input class="item-check" type="checkbox" data-item="palette" aria-label="Check off Divided palette / paint tray">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Divided palette / paint tray <span class="must">MUST</span></span><span class="item-note">Keeps tiny amounts of paint separated.</span></span>
+      <span class="qty">1–2</span>
+    </label></div>
+        <h3>FROM HOME</h3><ul class="plain-list"><li>Plastic dinosaurs/animals with washable feet</li><li>Old toothbrush or scrub brush for cleanup</li></ul>
+        <h3>DO THIS</h3><ol class="steps"><li><span>1</span><p>Put a thin puddle of paint on the palette.</p></li><li><span>2</span><p>Dip or brush paint onto the animal feet.</p></li><li><span>3</span><p>Make a trail of prints across the page.</p></li><li><span>4</span><p>Tell a tiny story: where is the dinosaur going? Who is following it?</p></li><li><span>5</span><p>Wash toys immediately after the activity.</p></li></ol>
+        <h3>EXTRA IDEAS</h3><ul class="idea-list"><li>Use blue paint for an animal watering hole.</li><li>Make two animals walk toward each other.</li><li>Make a simple animal footprint book over several sessions.</li><li>Pair footprints with washable marker drawings.</li></ul>
+      </div>
+    </details><details class="activity" data-activity="secret" data-buy="jumbo-crayons,watercolors,watercolor-paper,big-brushes">
+      <summary>
+        <span class="activity-icon">🌈</span>
+        <span class="activity-summary"><strong>Secret Crayon + Watercolor</strong><small>15–25 min · Medium mess · 4 store items</small></span>
+        <span class="chev">⌄</span>
+      </summary>
+      <div class="activity-body">
+        <p class="activity-desc">White crayon marks look invisible until watercolor washes over them.</p>
+        <button type="button" class="shop-activity" data-shop-activity="secret">Shop just this activity <span>→</span></button>
+        <h3>BUY AT MICHAELS</h3>
+        <div class="activity-buy"><label class="item activity-item" data-item-row="jumbo-crayons" data-cat="Drawing" data-essential="true" data-search="jumbo crayons easy grip for little hands. drawing">
+      <input class="item-check" type="checkbox" data-item="jumbo-crayons" aria-label="Check off Jumbo crayons">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Jumbo crayons <span class="must">MUST</span></span><span class="item-note">Easy grip for little hands.</span></span>
+      <span class="qty">1 box</span>
+    </label>
+<label class="item activity-item" data-item-row="watercolors" data-cat="Paint" data-essential="true" data-search="washable watercolor set for secret-crayon resist and lighter painting. paint">
+      <input class="item-check" type="checkbox" data-item="watercolors" aria-label="Check off Washable watercolor set">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable watercolor set <span class="must">MUST</span></span><span class="item-note">For secret-crayon resist and lighter painting.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item activity-item" data-item-row="watercolor-paper" data-cat="Paper" data-essential="false" data-search="watercolor paper / kids paint pad stays sturdier for watercolor. paper">
+      <input class="item-check" type="checkbox" data-item="watercolor-paper" aria-label="Check off Watercolor paper / kids paint pad">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Watercolor paper / kids paint pad </span><span class="item-note">Stays sturdier for watercolor.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item activity-item" data-item-row="big-brushes" data-cat="Tools" data-essential="true" data-search="big-handle toddler paint brushes large round handles are much easier to control. tools">
+      <input class="item-check" type="checkbox" data-item="big-brushes" aria-label="Check off Big-handle toddler paint brushes">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Big-handle toddler paint brushes <span class="must">MUST</span></span><span class="item-note">Large round handles are much easier to control.</span></span>
+      <span class="qty">2 sets</span>
+    </label></div>
+        <h3>FROM HOME</h3><ul class="plain-list"><li>Water cup</li><li>Paper towel</li></ul>
+        <h3>DO THIS</h3><ol class="steps"><li><span>1</span><p>Adult draws a few simple white crayon shapes, lines, or her initial.</p></li><li><span>2</span><p>Let her add her own white crayon scribbles.</p></li><li><span>3</span><p>Brush watercolor over the paper.</p></li><li><span>4</span><p>Watch the wax resist the paint and reveal the hidden marks.</p></li><li><span>5</span><p>Try a second sheet where she chooses the watercolor colors.</p></li></ol>
+        <h3>EXTRA IDEAS</h3><ul class="idea-list"><li>Draw hearts, stars, animals, or her name invisibly.</li><li>Use multiple crayon colors under watercolor.</li><li>Make secret birthday cards.</li><li>Write what the hidden drawing was on the back.</li></ul>
+      </div>
+    </details><details class="activity" data-activity="sponges" data-buy="craft-sponges,tempera-colors,cardstock,palette,adult-scissors">
+      <summary>
+        <span class="activity-icon">🟨</span>
+        <span class="activity-summary"><strong>Sponge Shape Printing</strong><small>20–30 min · Medium mess · 5 store items</small></span>
+        <span class="chev">⌄</span>
+      </summary>
+      <div class="activity-body">
+        <p class="activity-desc">Big sponges make easy stamps without tiny craft pieces.</p>
+        <button type="button" class="shop-activity" data-shop-activity="sponges">Shop just this activity <span>→</span></button>
+        <h3>BUY AT MICHAELS</h3>
+        <div class="activity-buy"><label class="item activity-item" data-item-row="craft-sponges" data-cat="Tools" data-essential="false" data-search="large craft sponge pack for giant stamps and texture printing. tools">
+      <input class="item-check" type="checkbox" data-item="craft-sponges" aria-label="Check off Large craft sponge pack">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Large craft sponge pack </span><span class="item-note">For giant stamps and texture printing.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item activity-item" data-item-row="tempera-colors" data-cat="Paint" data-essential="true" data-search="washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black everyday paint for paper, cardboard, canvas and unfinished wood. paint">
+      <input class="item-check" type="checkbox" data-item="tempera-colors" aria-label="Check off Washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black <span class="must">MUST</span></span><span class="item-note">Everyday paint for paper, cardboard, canvas and unfinished wood.</span></span>
+      <span class="qty">1 each</span>
+    </label>
+<label class="item activity-item" data-item-row="cardstock" data-cat="Paper" data-essential="true" data-search="heavy white cardstock better for wet paint, stamping and keepsakes. paper">
+      <input class="item-check" type="checkbox" data-item="cardstock" aria-label="Check off Heavy white cardstock">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Heavy white cardstock <span class="must">MUST</span></span><span class="item-note">Better for wet paint, stamping and keepsakes.</span></span>
+      <span class="qty">1 pack</span>
+    </label>
+<label class="item activity-item" data-item-row="palette" data-cat="Tools" data-essential="true" data-search="divided palette / paint tray keeps tiny amounts of paint separated. tools">
+      <input class="item-check" type="checkbox" data-item="palette" aria-label="Check off Divided palette / paint tray">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Divided palette / paint tray <span class="must">MUST</span></span><span class="item-note">Keeps tiny amounts of paint separated.</span></span>
+      <span class="qty">1–2</span>
+    </label>
+<label class="item activity-item" data-item-row="adult-scissors" data-cat="Parent" data-essential="false" data-search="adult scissors / cardboard cutter parent-only setup tool. parent">
+      <input class="item-check" type="checkbox" data-item="adult-scissors" aria-label="Check off Adult scissors / cardboard cutter">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Adult scissors / cardboard cutter </span><span class="item-note">Parent-only setup tool.</span></span>
+      <span class="qty">1</span>
+    </label></div>
+        <h3>FROM HOME</h3><ul class="plain-list"><li>Old tray or baking sheet</li></ul>
+        <h3>DO THIS</h3><ol class="steps"><li><span>1</span><p>Adult cuts sponges into BIG circles, squares, hearts, or triangles.</p></li><li><span>2</span><p>Add a thin layer of paint to a tray.</p></li><li><span>3</span><p>Press sponge into paint, then stamp the paper.</p></li><li><span>4</span><p>Overlap shapes and colors.</p></li><li><span>5</span><p>Rinse sponges and save them for the next session.</p></li></ol>
+        <h3>EXTRA IDEAS</h3><ul class="idea-list"><li>Build a house from stamped squares and triangles.</li><li>Make a field of flowers.</li><li>Use only circles and invent as many pictures as possible.</li><li>Keep the sponge set in a labeled zip bag.</li></ul>
+      </div>
+    </details><details class="activity" data-activity="nature" data-buy="tempera-colors,cardstock,foam-brushes,drop-cloth">
+      <summary>
+        <span class="activity-icon">🍃</span>
+        <span class="activity-summary"><strong>Nature Stamp Lab</strong><small>25–40 min · Medium mess · 4 store items</small></span>
+        <span class="chev">⌄</span>
+      </summary>
+      <div class="activity-body">
+        <p class="activity-desc">Collect leaves and other large natural textures outside, then print them with washable paint.</p>
+        <button type="button" class="shop-activity" data-shop-activity="nature">Shop just this activity <span>→</span></button>
+        <h3>BUY AT MICHAELS</h3>
+        <div class="activity-buy"><label class="item activity-item" data-item-row="tempera-colors" data-cat="Paint" data-essential="true" data-search="washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black everyday paint for paper, cardboard, canvas and unfinished wood. paint">
+      <input class="item-check" type="checkbox" data-item="tempera-colors" aria-label="Check off Washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black <span class="must">MUST</span></span><span class="item-note">Everyday paint for paper, cardboard, canvas and unfinished wood.</span></span>
+      <span class="qty">1 each</span>
+    </label>
+<label class="item activity-item" data-item-row="cardstock" data-cat="Paper" data-essential="true" data-search="heavy white cardstock better for wet paint, stamping and keepsakes. paper">
+      <input class="item-check" type="checkbox" data-item="cardstock" aria-label="Check off Heavy white cardstock">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Heavy white cardstock <span class="must">MUST</span></span><span class="item-note">Better for wet paint, stamping and keepsakes.</span></span>
+      <span class="qty">1 pack</span>
+    </label>
+<label class="item activity-item" data-item-row="foam-brushes" data-cat="Tools" data-essential="true" data-search="foam brush multipack fast coverage on wood and canvas. tools">
+      <input class="item-check" type="checkbox" data-item="foam-brushes" aria-label="Check off Foam brush multipack">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Foam brush multipack <span class="must">MUST</span></span><span class="item-note">Fast coverage on wood and canvas.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item activity-item" data-item-row="drop-cloth" data-cat="Tools" data-essential="true" data-search="plastic table cover / drop cloth makes yes-to-paint much easier. tools">
+      <input class="item-check" type="checkbox" data-item="drop-cloth" aria-label="Check off Plastic table cover / drop cloth">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Plastic table cover / drop cloth <span class="must">MUST</span></span><span class="item-note">Makes yes-to-paint much easier.</span></span>
+      <span class="qty">1</span>
+    </label></div>
+        <h3>FROM HOME</h3><ul class="plain-list"><li>Large leaves, pinecones, flat bark pieces</li><li>Basket for collecting</li></ul>
+        <h3>DO THIS</h3><ol class="steps"><li><span>1</span><p>Collect a few large, clean nature items together.</p></li><li><span>2</span><p>Brush a small amount of paint onto one textured surface.</p></li><li><span>3</span><p>Press it onto paper and lift straight up.</p></li><li><span>4</span><p>Try the opposite side or a second color.</p></li><li><span>5</span><p>Talk about which objects make lines, dots, veins, or blobs.</p></li></ol>
+        <h3>EXTRA IDEAS</h3><ul class="idea-list"><li>Make a seasonal page.</li><li>Use a long paper roll and create a nature border.</li><li>Photograph the original leaf next to its print.</li><li>Paint around a leaf rather than stamping it.</li></ul>
+      </div>
+    </details><details class="activity" data-activity="stickercity" data-buy="foam-stickers,poster-board,markers-broad,glue-sticks,painters-tape">
+      <summary>
+        <span class="activity-icon">🏙️</span>
+        <span class="activity-summary"><strong>Sticker Collage City</strong><small>15–35 min · Low mess · 5 store items</small></span>
+        <span class="chev">⌄</span>
+      </summary>
+      <div class="activity-body">
+        <p class="activity-desc">A low-mess activity for days when paint is too much.</p>
+        <button type="button" class="shop-activity" data-shop-activity="stickercity">Shop just this activity <span>→</span></button>
+        <h3>BUY AT MICHAELS</h3>
+        <div class="activity-buy"><label class="item activity-item" data-item-row="foam-stickers" data-cat="Collage" data-essential="true" data-search="large foam stickers choose large pieces rated for her age. collage">
+      <input class="item-check" type="checkbox" data-item="foam-stickers" aria-label="Check off Large foam stickers">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Large foam stickers <span class="must">MUST</span></span><span class="item-note">Choose large pieces rated for her age.</span></span>
+      <span class="qty">2 packs</span>
+    </label>
+<label class="item activity-item" data-item-row="poster-board" data-cat="Paper" data-essential="false" data-search="poster board / large sheets low-cost giant collage surface. paper">
+      <input class="item-check" type="checkbox" data-item="poster-board" aria-label="Check off Poster board / large sheets">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Poster board / large sheets </span><span class="item-note">Low-cost giant collage surface.</span></span>
+      <span class="qty">a few</span>
+    </label>
+<label class="item activity-item" data-item-row="markers-broad" data-cat="Drawing" data-essential="true" data-search="washable broad-line markers crayola ultra-clean or similar; one big pack + backup is perfect. drawing">
+      <input class="item-check" type="checkbox" data-item="markers-broad" aria-label="Check off Washable broad-line markers">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable broad-line markers <span class="must">MUST</span></span><span class="item-note">Crayola Ultra-Clean or similar; one big pack + backup is perfect.</span></span>
+      <span class="qty">2–3 packs</span>
+    </label>
+<label class="item activity-item" data-item-row="glue-sticks" data-cat="Collage" data-essential="true" data-search="washable glue sticks easy, low-mess sticking. collage">
+      <input class="item-check" type="checkbox" data-item="glue-sticks" aria-label="Check off Washable glue sticks">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable glue sticks <span class="must">MUST</span></span><span class="item-note">Easy, low-mess sticking.</span></span>
+      <span class="qty">3–6</span>
+    </label>
+<label class="item activity-item" data-item-row="painters-tape" data-cat="Parent" data-essential="true" data-search="painter&#x27;s tape floor murals, tape-resist canvases, holding paper still. parent">
+      <input class="item-check" type="checkbox" data-item="painters-tape" aria-label="Check off Painter&#x27;s tape">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Painter&#x27;s tape <span class="must">MUST</span></span><span class="item-note">Floor murals, tape-resist canvases, holding paper still.</span></span>
+      <span class="qty">1 roll</span>
+    </label></div>
+        <h3>FROM HOME</h3><ul class="plain-list"><li>Large magazine pictures cut out by an adult — optional</li></ul>
+        <h3>DO THIS</h3><ol class="steps"><li><span>1</span><p>Tape a large sheet to the table.</p></li><li><span>2</span><p>Draw a few roads or giant boxes for houses.</p></li><li><span>3</span><p>Give her a small bowl/tray of LARGE stickers.</p></li><li><span>4</span><p>Let her build a completely nonsensical city.</p></li><li><span>5</span><p>Add marker windows, roads, suns, people, or scribbles.</p></li></ol>
+        <h3>EXTRA IDEAS</h3><ul class="idea-list"><li>Make an animal city, vehicle city, or rainbow city.</li><li>Use one huge letter of her name as the collage shape.</li><li>Make a reusable sticker tray so she chooses only a few at a time.</li><li>Hang the whole poster.</li></ul>
+      </div>
+    </details><details class="activity" data-activity="puppets" data-buy="paper-bags,markers-broad,jumbo-crayons,foam-stickers,construction-paper,glue-sticks,adult-scissors">
+      <summary>
+        <span class="activity-icon">🧸</span>
+        <span class="activity-summary"><strong>Paper Bag Puppet Theater</strong><small>25–45 min · Low–medium mess · 7 store items</small></span>
+        <span class="chev">⌄</span>
+      </summary>
+      <div class="activity-body">
+        <p class="activity-desc">Make big, simple puppets and immediately turn the craft into pretend play.</p>
+        <button type="button" class="shop-activity" data-shop-activity="puppets">Shop just this activity <span>→</span></button>
+        <h3>BUY AT MICHAELS</h3>
+        <div class="activity-buy"><label class="item activity-item" data-item-row="paper-bags" data-cat="Collage" data-essential="false" data-search="paper lunch bags instant puppet bodies. collage">
+      <input class="item-check" type="checkbox" data-item="paper-bags" aria-label="Check off Paper lunch bags">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Paper lunch bags </span><span class="item-note">Instant puppet bodies.</span></span>
+      <span class="qty">1 pack</span>
+    </label>
+<label class="item activity-item" data-item-row="markers-broad" data-cat="Drawing" data-essential="true" data-search="washable broad-line markers crayola ultra-clean or similar; one big pack + backup is perfect. drawing">
+      <input class="item-check" type="checkbox" data-item="markers-broad" aria-label="Check off Washable broad-line markers">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable broad-line markers <span class="must">MUST</span></span><span class="item-note">Crayola Ultra-Clean or similar; one big pack + backup is perfect.</span></span>
+      <span class="qty">2–3 packs</span>
+    </label>
+<label class="item activity-item" data-item-row="jumbo-crayons" data-cat="Drawing" data-essential="true" data-search="jumbo crayons easy grip for little hands. drawing">
+      <input class="item-check" type="checkbox" data-item="jumbo-crayons" aria-label="Check off Jumbo crayons">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Jumbo crayons <span class="must">MUST</span></span><span class="item-note">Easy grip for little hands.</span></span>
+      <span class="qty">1 box</span>
+    </label>
+<label class="item activity-item" data-item-row="foam-stickers" data-cat="Collage" data-essential="true" data-search="large foam stickers choose large pieces rated for her age. collage">
+      <input class="item-check" type="checkbox" data-item="foam-stickers" aria-label="Check off Large foam stickers">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Large foam stickers <span class="must">MUST</span></span><span class="item-note">Choose large pieces rated for her age.</span></span>
+      <span class="qty">2 packs</span>
+    </label>
+<label class="item activity-item" data-item-row="construction-paper" data-cat="Paper" data-essential="true" data-search="construction paper assortment for collage, puppets and color play. paper">
+      <input class="item-check" type="checkbox" data-item="construction-paper" aria-label="Check off Construction paper assortment">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Construction paper assortment <span class="must">MUST</span></span><span class="item-note">For collage, puppets and color play.</span></span>
+      <span class="qty">1 pack</span>
+    </label>
+<label class="item activity-item" data-item-row="glue-sticks" data-cat="Collage" data-essential="true" data-search="washable glue sticks easy, low-mess sticking. collage">
+      <input class="item-check" type="checkbox" data-item="glue-sticks" aria-label="Check off Washable glue sticks">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable glue sticks <span class="must">MUST</span></span><span class="item-note">Easy, low-mess sticking.</span></span>
+      <span class="qty">3–6</span>
+    </label>
+<label class="item activity-item" data-item-row="adult-scissors" data-cat="Parent" data-essential="false" data-search="adult scissors / cardboard cutter parent-only setup tool. parent">
+      <input class="item-check" type="checkbox" data-item="adult-scissors" aria-label="Check off Adult scissors / cardboard cutter">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Adult scissors / cardboard cutter </span><span class="item-note">Parent-only setup tool.</span></span>
+      <span class="qty">1</span>
+    </label></div>
+        <h3>FROM HOME</h3><ul class="plain-list"><li>Blanket/chair for a tiny puppet theater</li></ul>
+        <h3>DO THIS</h3><ol class="steps"><li><span>1</span><p>Color the front of the paper bag.</p></li><li><span>2</span><p>Adult cuts a few large ears, noses, or shapes from construction paper.</p></li><li><span>3</span><p>She chooses where to glue the large pieces.</p></li><li><span>4</span><p>Add big stickers or marker features.</p></li><li><span>5</span><p>Put the puppet on a hand and immediately invent a silly voice.</p></li></ol>
+        <h3>EXTRA IDEAS</h3><ul class="idea-list"><li>Make one family of puppets over several days.</li><li>Create animal puppets based on favorite books.</li><li>Write the puppet’s name and date on the back.</li><li>Let her puppet ask you questions.</li></ul>
+      </div>
+    </details><details class="activity" data-activity="playdoh" data-buy="playdoh,dough-tools">
+      <summary>
+        <span class="activity-icon">🟣</span>
+        <span class="activity-summary"><strong>Play-Doh Texture Lab</strong><small>20–40 min · Low–medium mess · 2 store items</small></span>
+        <span class="chev">⌄</span>
+      </summary>
+      <div class="activity-body">
+        <p class="activity-desc">Squish, roll, stamp, poke, and compare textures.</p>
+        <button type="button" class="shop-activity" data-shop-activity="playdoh">Shop just this activity <span>→</span></button>
+        <h3>BUY AT MICHAELS</h3>
+        <div class="activity-buy"><label class="item activity-item" data-item-row="playdoh" data-cat="Sensory" data-essential="true" data-search="play-doh starter set / full-size cans choose an age-appropriate standard dough set. sensory">
+      <input class="item-check" type="checkbox" data-item="playdoh" aria-label="Check off Play-Doh starter set / full-size cans">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Play-Doh starter set / full-size cans <span class="must">MUST</span></span><span class="item-note">Choose an age-appropriate standard dough set.</span></span>
+      <span class="qty">6–8 cans</span>
+    </label>
+<label class="item activity-item" data-item-row="dough-tools" data-cat="Sensory" data-essential="false" data-search="large play-doh rollers / cutters only tools specifically age-rated for her. sensory">
+      <input class="item-check" type="checkbox" data-item="dough-tools" aria-label="Check off Large Play-Doh rollers / cutters">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Large Play-Doh rollers / cutters </span><span class="item-note">Only tools specifically age-rated for her.</span></span>
+      <span class="qty">1 set</span>
+    </label></div>
+        <h3>FROM HOME</h3><ul class="plain-list"><li>Large cookie cutters</li><li>Plastic fork/spoon</li><li>Toy animal feet</li><li>Placemat or tray</li></ul>
+        <h3>DO THIS</h3><ol class="steps"><li><span>1</span><p>Put out only 2–3 colors.</p></li><li><span>2</span><p>Roll a thick pancake of dough.</p></li><li><span>3</span><p>Press different safe household textures into it.</p></li><li><span>4</span><p>Make tracks using toy animal feet or a chunky wheel.</p></li><li><span>5</span><p>Squish it all together and start again.</p></li></ol>
+        <h3>EXTRA IDEAS</h3><ul class="idea-list"><li>Make giant pretend cookies.</li><li>Create roads for toy cars.</li><li>Mix tiny amounts of two dough colors and predict the result.</li><li>Take a photo of anything she is proud of before remixing.</li></ul>
+      </div>
+    </details><details class="activity" data-activity="box" data-buy="paint-sticks,markers-broad,dot-markers,foam-stickers,paper-roll,painters-tape">
+      <summary>
+        <span class="activity-icon">📦</span>
+        <span class="activity-summary"><strong>The Cardboard Box House</strong><small>45–90 min · High mess · 6 store items</small></span>
+        <span class="chev">⌄</span>
+      </summary>
+      <div class="activity-body">
+        <p class="activity-desc">Turn a shipping box into something she can crawl into and decorate.</p>
+        <button type="button" class="shop-activity" data-shop-activity="box">Shop just this activity <span>→</span></button>
+        <h3>BUY AT MICHAELS</h3>
+        <div class="activity-buy"><label class="item activity-item" data-item-row="paint-sticks" data-cat="Paint" data-essential="true" data-search="kids washable paint sticks painting feel with almost no setup or cleanup. paint">
+      <input class="item-check" type="checkbox" data-item="paint-sticks" aria-label="Check off Kids washable paint sticks">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Kids washable paint sticks <span class="must">MUST</span></span><span class="item-note">Painting feel with almost no setup or cleanup.</span></span>
+      <span class="qty">1–2 sets</span>
+    </label>
+<label class="item activity-item" data-item-row="markers-broad" data-cat="Drawing" data-essential="true" data-search="washable broad-line markers crayola ultra-clean or similar; one big pack + backup is perfect. drawing">
+      <input class="item-check" type="checkbox" data-item="markers-broad" aria-label="Check off Washable broad-line markers">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable broad-line markers <span class="must">MUST</span></span><span class="item-note">Crayola Ultra-Clean or similar; one big pack + backup is perfect.</span></span>
+      <span class="qty">2–3 packs</span>
+    </label>
+<label class="item activity-item" data-item-row="dot-markers" data-cat="Drawing" data-essential="true" data-search="washable dot markers big grip, instant dots; great low-frustration option. drawing">
+      <input class="item-check" type="checkbox" data-item="dot-markers" aria-label="Check off Washable dot markers">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable dot markers <span class="must">MUST</span></span><span class="item-note">Big grip, instant dots; great low-frustration option.</span></span>
+      <span class="qty">1 set</span>
+    </label>
+<label class="item activity-item" data-item-row="foam-stickers" data-cat="Collage" data-essential="true" data-search="large foam stickers choose large pieces rated for her age. collage">
+      <input class="item-check" type="checkbox" data-item="foam-stickers" aria-label="Check off Large foam stickers">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Large foam stickers <span class="must">MUST</span></span><span class="item-note">Choose large pieces rated for her age.</span></span>
+      <span class="qty">2 packs</span>
+    </label>
+<label class="item activity-item" data-item-row="paper-roll" data-cat="Paper" data-essential="true" data-search="creatology easel paper roll, 18 × 75 ft best supply in the cart for giant floor/table projects. paper">
+      <input class="item-check" type="checkbox" data-item="paper-roll" aria-label="Check off Creatology easel paper roll, 18 × 75 ft">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Creatology easel paper roll, 18 × 75 ft <span class="must">MUST</span></span><span class="item-note">Best supply in the cart for giant floor/table projects.</span></span>
+      <span class="qty">2 rolls</span>
+    </label>
+<label class="item activity-item" data-item-row="painters-tape" data-cat="Parent" data-essential="true" data-search="painter&#x27;s tape floor murals, tape-resist canvases, holding paper still. parent">
+      <input class="item-check" type="checkbox" data-item="painters-tape" aria-label="Check off Painter&#x27;s tape">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Painter&#x27;s tape <span class="must">MUST</span></span><span class="item-note">Floor murals, tape-resist canvases, holding paper still.</span></span>
+      <span class="qty">1 roll</span>
+    </label></div>
+        <h3>FROM HOME</h3><ul class="plain-list"><li>Large cardboard box</li><li>Adult utility knife/scissors</li></ul>
+        <h3>DO THIS</h3><ol class="steps"><li><span>1</span><p>Adult cuts a large doorway and any windows before she joins.</p></li><li><span>2</span><p>Reinforce sharp or rough cardboard edges with tape.</p></li><li><span>3</span><p>Let her color the walls with paint sticks and markers.</p></li><li><span>4</span><p>Add dot markers and large stickers as a second phase.</p></li><li><span>5</span><p>Write the house name over the door together.</p></li></ol>
+        <h3>EXTRA IDEAS</h3><ul class="idea-list"><li>Make a grocery store, rocket ship, veterinary clinic, castle, or car wash.</li><li>Add a paper-roll sign.</li><li>Use a second box as furniture.</li><li>Photograph it before recycling and save one decorated wall panel.</li></ul>
+      </div>
+    </details><details class="activity" data-activity="window" data-buy="window-markers">
+      <summary>
+        <span class="activity-icon">🪟</span>
+        <span class="activity-summary"><strong>Window Marker Gallery</strong><small>10–30 min · Low–medium mess · 1 store items</small></span>
+        <span class="chev">⌄</span>
+      </summary>
+      <div class="activity-body">
+        <p class="activity-desc">Use washable window markers on a safe glass surface for a totally different drawing experience.</p>
+        <button type="button" class="shop-activity" data-shop-activity="window">Shop just this activity <span>→</span></button>
+        <h3>BUY AT MICHAELS</h3>
+        <div class="activity-buy"><label class="item activity-item" data-item-row="window-markers" data-cat="Drawing" data-essential="false" data-search="washable window markers only use products specifically labeled for glass. drawing">
+      <input class="item-check" type="checkbox" data-item="window-markers" aria-label="Check off Washable window markers">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable window markers </span><span class="item-note">Only use products specifically labeled for glass.</span></span>
+      <span class="qty">1 set</span>
+    </label></div>
+        <h3>FROM HOME</h3><ul class="plain-list"><li>Safe reachable window or glass door with adult present</li><li>Microfiber cloth</li><li>Adult glass cleaner for cleanup</li></ul>
+        <h3>DO THIS</h3><ol class="steps"><li><span>1</span><p>Choose a glass surface where she can stand safely.</p></li><li><span>2</span><p>Start with only 3–4 marker colors.</p></li><li><span>3</span><p>Draw giant circles, faces, roads, or weather.</p></li><li><span>4</span><p>Let her erase part with a damp cloth and redraw.</p></li><li><span>5</span><p>Adult cleans the glass fully when finished.</p></li></ol>
+        <h3>EXTRA IDEAS</h3><ul class="idea-list"><li>Draw outside scenery onto the window.</li><li>Make a giant height line and decorate around it.</li><li>Draw seasonal decorations without paper.</li><li>Photograph before wiping it away.</li></ul>
+      </div>
+    </details><details class="activity" data-activity="handprint" data-buy="canvas-panels,tempera-colors,foam-brushes,palette,permanent-marker">
+      <summary>
+        <span class="activity-icon">🖐️</span>
+        <span class="activity-summary"><strong>Handprint Family Canvas</strong><small>15–25 min + dry · Medium–high mess · 5 store items</small></span>
+        <span class="chev">⌄</span>
+      </summary>
+      <div class="activity-body">
+        <p class="activity-desc">A controlled messy project that creates a keepsake instead of just another sheet of paper.</p>
+        <button type="button" class="shop-activity" data-shop-activity="handprint">Shop just this activity <span>→</span></button>
+        <h3>BUY AT MICHAELS</h3>
+        <div class="activity-buy"><label class="item activity-item" data-item-row="canvas-panels" data-cat="Paper" data-essential="true" data-search="9 × 12 canvas panels cheap durable surface for keepsakes. paper">
+      <input class="item-check" type="checkbox" data-item="canvas-panels" aria-label="Check off 9 × 12 canvas panels">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">9 × 12 canvas panels <span class="must">MUST</span></span><span class="item-note">Cheap durable surface for keepsakes.</span></span>
+      <span class="qty">2 multipacks</span>
+    </label>
+<label class="item activity-item" data-item-row="tempera-colors" data-cat="Paint" data-essential="true" data-search="washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black everyday paint for paper, cardboard, canvas and unfinished wood. paint">
+      <input class="item-check" type="checkbox" data-item="tempera-colors" aria-label="Check off Washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black <span class="must">MUST</span></span><span class="item-note">Everyday paint for paper, cardboard, canvas and unfinished wood.</span></span>
+      <span class="qty">1 each</span>
+    </label>
+<label class="item activity-item" data-item-row="foam-brushes" data-cat="Tools" data-essential="true" data-search="foam brush multipack fast coverage on wood and canvas. tools">
+      <input class="item-check" type="checkbox" data-item="foam-brushes" aria-label="Check off Foam brush multipack">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Foam brush multipack <span class="must">MUST</span></span><span class="item-note">Fast coverage on wood and canvas.</span></span>
+      <span class="qty">1</span>
+    </label>
+<label class="item activity-item" data-item-row="palette" data-cat="Tools" data-essential="true" data-search="divided palette / paint tray keeps tiny amounts of paint separated. tools">
+      <input class="item-check" type="checkbox" data-item="palette" aria-label="Check off Divided palette / paint tray">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Divided palette / paint tray <span class="must">MUST</span></span><span class="item-note">Keeps tiny amounts of paint separated.</span></span>
+      <span class="qty">1–2</span>
+    </label>
+<label class="item activity-item" data-item-row="permanent-marker" data-cat="Parent" data-essential="false" data-search="permanent marker parent-only: names, dates and ages on backs. parent">
+      <input class="item-check" type="checkbox" data-item="permanent-marker" aria-label="Check off Permanent marker">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Permanent marker </span><span class="item-note">Parent-only: names, dates and ages on backs.</span></span>
+      <span class="qty">1</span>
+    </label></div>
+        <h3>FROM HOME</h3><ul class="plain-list"><li>Wet washcloth ready before you start</li></ul>
+        <h3>DO THIS</h3><ol class="steps"><li><span>1</span><p>Choose one paint color and brush a thin layer onto her palm.</p></li><li><span>2</span><p>Press hand straight down onto the canvas and lift straight up.</p></li><li><span>3</span><p>Wash her hand immediately.</p></li><li><span>4</span><p>After it dries, add another handprint or let her paint around it.</p></li><li><span>5</span><p>Adult writes her name, age, and date on the back.</p></li></ol>
+        <h3>EXTRA IDEAS</h3><ul class="idea-list"><li>Make one every birthday.</li><li>Add parent handprints on a larger canvas.</li><li>Use different colors for different family members.</li><li>Photograph her hand next to the finished print.</li></ul>
+      </div>
+    </details><details class="activity" data-activity="mixing" data-buy="tempera-colors,tempera-white,cardstock,palette,big-brushes">
+      <summary>
+        <span class="activity-icon">🧪</span>
+        <span class="activity-summary"><strong>Color Mixing Laboratory</strong><small>15–30 min · Medium mess · 5 store items</small></span>
+        <span class="chev">⌄</span>
+      </summary>
+      <div class="activity-body">
+        <p class="activity-desc">A simple first experiment: two colors go in, a new color comes out.</p>
+        <button type="button" class="shop-activity" data-shop-activity="mixing">Shop just this activity <span>→</span></button>
+        <h3>BUY AT MICHAELS</h3>
+        <div class="activity-buy"><label class="item activity-item" data-item-row="tempera-colors" data-cat="Paint" data-essential="true" data-search="washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black everyday paint for paper, cardboard, canvas and unfinished wood. paint">
+      <input class="item-check" type="checkbox" data-item="tempera-colors" aria-label="Check off Washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black <span class="must">MUST</span></span><span class="item-note">Everyday paint for paper, cardboard, canvas and unfinished wood.</span></span>
+      <span class="qty">1 each</span>
+    </label>
+<label class="item activity-item" data-item-row="tempera-white" data-cat="Paint" data-essential="true" data-search="washable tempera — white white disappears fast when color mixing starts. paint">
+      <input class="item-check" type="checkbox" data-item="tempera-white" aria-label="Check off Washable tempera — WHITE">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Washable tempera — WHITE <span class="must">MUST</span></span><span class="item-note">White disappears fast when color mixing starts.</span></span>
+      <span class="qty">2 bottles</span>
+    </label>
+<label class="item activity-item" data-item-row="cardstock" data-cat="Paper" data-essential="true" data-search="heavy white cardstock better for wet paint, stamping and keepsakes. paper">
+      <input class="item-check" type="checkbox" data-item="cardstock" aria-label="Check off Heavy white cardstock">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Heavy white cardstock <span class="must">MUST</span></span><span class="item-note">Better for wet paint, stamping and keepsakes.</span></span>
+      <span class="qty">1 pack</span>
+    </label>
+<label class="item activity-item" data-item-row="palette" data-cat="Tools" data-essential="true" data-search="divided palette / paint tray keeps tiny amounts of paint separated. tools">
+      <input class="item-check" type="checkbox" data-item="palette" aria-label="Check off Divided palette / paint tray">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Divided palette / paint tray <span class="must">MUST</span></span><span class="item-note">Keeps tiny amounts of paint separated.</span></span>
+      <span class="qty">1–2</span>
+    </label>
+<label class="item activity-item" data-item-row="big-brushes" data-cat="Tools" data-essential="true" data-search="big-handle toddler paint brushes large round handles are much easier to control. tools">
+      <input class="item-check" type="checkbox" data-item="big-brushes" aria-label="Check off Big-handle toddler paint brushes">
+      <span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.3"/></svg></span>
+      <span class="item-copy"><span class="item-title">Big-handle toddler paint brushes <span class="must">MUST</span></span><span class="item-note">Large round handles are much easier to control.</span></span>
+      <span class="qty">2 sets</span>
+    </label></div>
+        <h3>FROM HOME</h3><ul class="plain-list"><li>Water cup</li><li>Paper towel</li><li>Old spoon for parent portioning</li></ul>
+        <h3>DO THIS</h3><ol class="steps"><li><span>1</span><p>Put tiny puddles of red, yellow, and blue in separate wells.</p></li><li><span>2</span><p>Make a second empty mixing area.</p></li><li><span>3</span><p>Let her choose two colors and mix them together.</p></li><li><span>4</span><p>Paint the new color on paper.</p></li><li><span>5</span><p>Repeat with other pairs and then add white to make lighter versions.</p></li></ol>
+        <h3>EXTRA IDEAS</h3><ul class="idea-list"><li>Make a page labeled with each color recipe.</li><li>Ask her to predict the new color before mixing.</li><li>Write her funny names for the colors on the back.</li><li>Use the mixed colors to paint a wooden shape afterward.</li></ul>
+      </div>    </details></div></section>
+<section class="screen" id="studioScreen"><div class="screen-title"><span class="kicker">HOME SETUP</span><h2>Make “yes” easy.</h2><p>Keep everyday supplies reachable and the messy/special stuff parent-controlled.</p></div><div class="studio-grid">
+<div class="studio-card"><h3>🧺 Everyday caddy</h3><ul><li>6–8 washable broad markers</li><li>4 jumbo crayons</li><li>2–3 Twistables</li><li>1 glue stick</li><li>Small drawing pad</li></ul></div>
+<div class="studio-card"><h3>⚡ Pick by energy level</h3><ul><li><b>5 minutes:</b> markers + drawing pad.</li><li><b>Low mess:</b> dot markers + stickers.</li><li><b>Paint day:</b> 3–5 tempera colors + one interesting surface.</li><li><b>Weekend:</b> wooden figures, tape-resist canvas, or cardboard house.</li><li><b>Outside:</b> giant mural or nature printing.</li></ul></div>
+<div class="studio-card"><h3>🖼️ Keep the best</h3><p>Date the back of good pieces. Keep a slim portfolio, photograph 3D projects, and rotate a few current favorites on display instead of saving absolutely everything.</p></div>
+<div class="studio-card danger"><h3>🚫 Skip for now</h3><p>Loose glitter, beads, sequins, tiny pom-poms, tiny googly eyes, tiny buttons, magnets, craft knives, hot glue, and anything labeled above her age.</p></div>
+</div></section>
+</main>
+<nav class="bottom-nav"><label for="view-shop"><span class="nav-icon">🛒</span>SHOP<span class="nav-badge" id="navBadge">45</span></label><label for="view-activities"><span class="nav-icon">🎨</span>ACTIVITIES</label><label for="view-studio"><span class="nav-icon">🏠</span>STUDIO</label></nav>
+</div><div class="snack" id="snack"><span id="snackText">Added to cart</span><button id="undo" type="button">Undo</button></div><script>
+const ITEMS=[{"id":"markers-broad","cat":"Drawing","name":"Washable broad-line markers","qty":"2–3 packs","note":"Crayola Ultra-Clean or similar; one big pack + backup is perfect.","essential":true},{"id":"dot-markers","cat":"Drawing","name":"Washable dot markers","qty":"1 set","note":"Big grip, instant dots; great low-frustration option.","essential":true},{"id":"twistables","cat":"Drawing","name":"Crayola Twistables colored pencils","qty":"1 set","note":"No sharpening; easier than traditional colored pencils.","essential":true},{"id":"jumbo-crayons","cat":"Drawing","name":"Jumbo crayons","qty":"1 box","note":"Easy grip for little hands.","essential":true},{"id":"window-markers","cat":"Drawing","name":"Washable window markers","qty":"1 set","note":"Only use products specifically labeled for glass.","essential":false},{"id":"tempera-colors","cat":"Paint","name":"Washable tempera — red, yellow, blue, green, orange, purple, pink/magenta, black","qty":"1 each","note":"Everyday paint for paper, cardboard, canvas and unfinished wood.","essential":true},{"id":"tempera-white","cat":"Paint","name":"Washable tempera — WHITE","qty":"2 bottles","note":"White disappears fast when color mixing starts.","essential":true},{"id":"paint-set","cat":"Paint","name":"Optional 10-color washable paint set","qty":"1","note":"Small bottles for fast sessions and trying colors.","essential":false},{"id":"paint-sticks","cat":"Paint","name":"Kids washable paint sticks","qty":"1–2 sets","note":"Painting feel with almost no setup or cleanup.","essential":true},{"id":"watercolors","cat":"Paint","name":"Washable watercolor set","qty":"1","note":"For secret-crayon resist and lighter painting.","essential":true},{"id":"big-brushes","cat":"Tools","name":"Big-handle toddler paint brushes","qty":"2 sets","note":"Large round handles are much easier to control.","essential":true},{"id":"foam-brushes","cat":"Tools","name":"Foam brush multipack","qty":"1","note":"Fast coverage on wood and canvas.","essential":true},{"id":"craft-sponges","cat":"Tools","name":"Large craft sponge pack","qty":"1","note":"For giant stamps and texture printing.","essential":false},{"id":"palette","cat":"Tools","name":"Divided palette / paint tray","qty":"1–2","note":"Keeps tiny amounts of paint separated.","essential":true},{"id":"rinse-cups","cat":"Tools","name":"Rinse cups","qty":"2","note":"Short, stable cups are easiest.","essential":false},{"id":"smock","cat":"Tools","name":"Washable art smock","qty":"1","note":"Worth buying once.","essential":true},{"id":"drop-cloth","cat":"Tools","name":"Plastic table cover / drop cloth","qty":"1","note":"Makes yes-to-paint much easier.","essential":true},{"id":"paper-roll","cat":"Paper","name":"Creatology easel paper roll, 18 × 75 ft","qty":"2 rolls","note":"Best supply in the cart for giant floor/table projects.","essential":true},{"id":"drawing-pad","cat":"Paper","name":"Kids drawing paper pads","qty":"1–2","note":"Daily grab-and-go drawing surface.","essential":true},{"id":"construction-paper","cat":"Paper","name":"Construction paper assortment","qty":"1 pack","note":"For collage, puppets and color play.","essential":true},{"id":"cardstock","cat":"Paper","name":"Heavy white cardstock","qty":"1 pack","note":"Better for wet paint, stamping and keepsakes.","essential":true},{"id":"watercolor-paper","cat":"Paper","name":"Watercolor paper / kids paint pad","qty":"1","note":"Stays sturdier for watercolor.","essential":false},{"id":"canvas-panels","cat":"Paper","name":"9 × 12 canvas panels","qty":"2 multipacks","note":"Cheap durable surface for keepsakes.","essential":true},{"id":"poster-board","cat":"Paper","name":"Poster board / large sheets","qty":"a few","note":"Low-cost giant collage surface.","essential":false},{"id":"wood-shapes","cat":"Projects","name":"Large unfinished wood shapes / animals","qty":"10–20","note":"Choose chunky pieces and verify package age guidance.","essential":true},{"id":"wood-boxes","cat":"Projects","name":"Unfinished wooden boxes or frames","qty":"1–2","note":"Paintable keepsakes; verify age guidance.","essential":false},{"id":"wood-letters","cat":"Projects","name":"Large wooden letters","qty":"as needed","note":"Spell her name if the pieces are age-appropriate.","essential":false},{"id":"foam-stickers","cat":"Collage","name":"Large foam stickers","qty":"2 packs","note":"Choose large pieces rated for her age.","essential":true},{"id":"glue-sticks","cat":"Collage","name":"Washable glue sticks","qty":"3–6","note":"Easy, low-mess sticking.","essential":true},{"id":"school-glue","cat":"Collage","name":"Washable school glue","qty":"1 bottle","note":"Useful for parent-assisted projects.","essential":false},{"id":"tissue-paper","cat":"Collage","name":"Tissue paper sheets","qty":"1 pack","note":"Use large pieces; supervise.","essential":false},{"id":"felt-foam","cat":"Collage","name":"Felt / craft foam sheets","qty":"1 pack","note":"Large pieces only; supervise.","essential":false},{"id":"paper-bags","cat":"Collage","name":"Paper lunch bags","qty":"1 pack","note":"Instant puppet bodies.","essential":false},{"id":"playdoh","cat":"Sensory","name":"Play-Doh starter set / full-size cans","qty":"6–8 cans","note":"Choose an age-appropriate standard dough set.","essential":true},{"id":"dough-tools","cat":"Sensory","name":"Large Play-Doh rollers / cutters","qty":"1 set","note":"Only tools specifically age-rated for her.","essential":false},{"id":"caddy","cat":"Storage","name":"Open art caddy","qty":"1","note":"Daily markers, crayons, glue and a small pad.","essential":true},{"id":"paint-bin","cat":"Storage","name":"Clear lidded PAINT bin","qty":"1","note":"Keeps paint contained and parent-controlled.","essential":false},{"id":"project-bin","cat":"Storage","name":"Clear lidded PROJECT SURFACES bin","qty":"1","note":"Wood, canvas, cardboard pieces.","essential":false},{"id":"paper-bin","cat":"Storage","name":"Paper storage bin / vertical file","qty":"1","note":"Prevents paper from becoming a bent pile.","essential":false},{"id":"drying-tray","cat":"Storage","name":"Drying tray / inexpensive sheet pan","qty":"1","note":"Move wet art without touching it.","essential":true},{"id":"zip-bags","cat":"Storage","name":"Zip bags for reusable activity parts","qty":"1 box","note":"Great for sponge shapes and small sets.","essential":false},{"id":"painters-tape","cat":"Parent","name":"Painter's tape","qty":"1 roll","note":"Floor murals, tape-resist canvases, holding paper still.","essential":true},{"id":"mod-podge","cat":"Parent","name":"Mod Podge / clear sealer","qty":"1","note":"Parent-only finishing coat for dry wooden projects.","essential":false},{"id":"permanent-marker","cat":"Parent","name":"Permanent marker","qty":"1","note":"Parent-only: names, dates and ages on backs.","essential":false},{"id":"adult-scissors","cat":"Parent","name":"Adult scissors / cardboard cutter","qty":"1","note":"Parent-only setup tool.","essential":false}];
+const ACTIVITIES=[{"id":"mural","icon":"🖍️","title":"The Giant Floor Mural","time":"20–45 min","mess":"Low–medium","desc":"Tape down a huge piece of paper and let her draw with her whole body instead of staying inside a little page.","buy":["paper-roll","markers-broad","jumbo-crayons","dot-markers","painters-tape"],"home":["Hard floor or large table","Optional toy animals/cars for tracing"],"steps":["Roll out 5–8 feet of paper and tape every edge flat.","Put out only 6–10 markers/crayons at first.","Draw one road, circle, house, or giant squiggle to invite her in — then let her take over.","Add dot markers halfway through so the activity feels new again.","Write the date and let her add one final giant mark before you roll it up."],"ideas":["Trace her body outline and let her color inside it.","Draw roads and parking spaces for toy cars.","Make one mural every month and compare them over time.","Cut one section into greeting cards or hang a favorite section at toddler eye level."]},{"id":"dots","icon":"🔴","title":"Dot Marker Rainbow Hunt","time":"10–25 min","mess":"Low","desc":"A very easy, very satisfying color game using big washable dot markers.","buy":["dot-markers","cardstock","foam-stickers"],"home":["Masking/painter’s tape","A few household objects in different colors"],"steps":["Make six large circles or simple blobs on the paper.","Ask her to fill each area with dots — matching colors if she wants, random if she does not.","Place a red toy, blue cup, yellow block, etc. nearby and play find-that-color.","Let dots overlap to discover new color combinations.","Stop while she is still having fun rather than trying to finish the sheet."],"ideas":["Make a giant rainbow on easel paper.","Dot along the first letter of her name.","Use finished pages as wrapping paper for family gifts.","Put the best sheet in a simple frame."]},{"id":"wood","icon":"🦊","title":"Wooden Animal Painting Workshop","time":"25–45 min + dry","mess":"Medium","desc":"Paint a few chunky unfinished wooden animals or shapes, then use them later for pretend play.","buy":["wood-shapes","tempera-colors","tempera-white","big-brushes","foam-brushes","palette","mod-podge"],"home":["Cookie sheet or cardboard drying surface"],"steps":["Choose only 2–4 wooden pieces for one session.","Put small puddles of 3–5 paint colors on a palette.","Let her paint every side she can reach. There is no wrong color.","Dry on a tray; flip later and paint the underside in a second session.","If you want the piece to last, an adult can seal it after the paint is completely dry."],"ideas":["Paint a set of animals that becomes her own play collection.","Paint a wooden box to store the finished animals.","Write the date underneath.","Photograph her holding each piece before it gets played with."]},{"id":"tape","icon":"🖼️","title":"Tape-Resist Canvas","time":"20–35 min + dry","mess":"Medium","desc":"You make simple tape lines; she paints everything. Peeling the tape gives a dramatic reveal.","buy":["canvas-panels","tempera-colors","big-brushes","foam-brushes","painters-tape","smock"],"home":["Tweezers or fingernail to lift tape after drying"],"steps":["Before she starts, press painter’s tape across the canvas in a few big lines or make a simple letter.","Let her cover as much of the canvas as she wants.","Use a foam brush if she wants to cover large areas quickly.","Let the canvas dry.","Adult slowly peels the tape away for the reveal."],"ideas":["Tape the first letter of her name.","Do three canvases with different color families.","Make a pair: one for her room and one as a grandparent gift.","Repeat yearly using the same tape pattern."]},{"id":"cars","icon":"🚗","title":"Toy Car Paint Tracks","time":"15–30 min","mess":"Medium–high","desc":"Turn washable paint into a racetrack and make wheel patterns across a giant sheet.","buy":["paper-roll","tempera-colors","drop-cloth","palette"],"home":["Washable plastic toy cars with chunky wheels","Tub or sink ready for immediate car washing"],"steps":["Tape a long strip of paper to the floor.","Put a very thin layer of washable paint in a shallow tray.","Roll one car through paint, then across the paper.","Try two colors on different cars and cross the tracks.","Put cars directly into the sink/tub before the paint dries."],"ideas":["Draw roads with marker first.","Use different tire textures and compare the tracks.","Make a finish line and race two colors.","Cut the coolest tire-track section into a long wall strip."]},{"id":"animalprints","icon":"🦕","title":"Dinosaur + Animal Footprints","time":"15–30 min","mess":"Medium","desc":"Plastic animals become giant stamps. Great for cause-and-effect and pretend play.","buy":["tempera-colors","paper-roll","cardstock","palette"],"home":["Plastic dinosaurs/animals with washable feet","Old toothbrush or scrub brush for cleanup"],"steps":["Put a thin puddle of paint on the palette.","Dip or brush paint onto the animal feet.","Make a trail of prints across the page.","Tell a tiny story: where is the dinosaur going? Who is following it?","Wash toys immediately after the activity."],"ideas":["Use blue paint for an animal watering hole.","Make two animals walk toward each other.","Make a simple animal footprint book over several sessions.","Pair footprints with washable marker drawings."]},{"id":"secret","icon":"🌈","title":"Secret Crayon + Watercolor","time":"15–25 min","mess":"Medium","desc":"White crayon marks look invisible until watercolor washes over them.","buy":["jumbo-crayons","watercolors","watercolor-paper","big-brushes"],"home":["Water cup","Paper towel"],"steps":["Adult draws a few simple white crayon shapes, lines, or her initial.","Let her add her own white crayon scribbles.","Brush watercolor over the paper.","Watch the wax resist the paint and reveal the hidden marks.","Try a second sheet where she chooses the watercolor colors."],"ideas":["Draw hearts, stars, animals, or her name invisibly.","Use multiple crayon colors under watercolor.","Make secret birthday cards.","Write what the hidden drawing was on the back."]},{"id":"sponges","icon":"🟨","title":"Sponge Shape Printing","time":"20–30 min","mess":"Medium","desc":"Big sponges make easy stamps without tiny craft pieces.","buy":["craft-sponges","tempera-colors","cardstock","palette","adult-scissors"],"home":["Old tray or baking sheet"],"steps":["Adult cuts sponges into BIG circles, squares, hearts, or triangles.","Add a thin layer of paint to a tray.","Press sponge into paint, then stamp the paper.","Overlap shapes and colors.","Rinse sponges and save them for the next session."],"ideas":["Build a house from stamped squares and triangles.","Make a field of flowers.","Use only circles and invent as many pictures as possible.","Keep the sponge set in a labeled zip bag."]},{"id":"nature","icon":"🍃","title":"Nature Stamp Lab","time":"25–40 min","mess":"Medium","desc":"Collect leaves and other large natural textures outside, then print them with washable paint.","buy":["tempera-colors","cardstock","foam-brushes","drop-cloth"],"home":["Large leaves, pinecones, flat bark pieces","Basket for collecting"],"steps":["Collect a few large, clean nature items together.","Brush a small amount of paint onto one textured surface.","Press it onto paper and lift straight up.","Try the opposite side or a second color.","Talk about which objects make lines, dots, veins, or blobs."],"ideas":["Make a seasonal page.","Use a long paper roll and create a nature border.","Photograph the original leaf next to its print.","Paint around a leaf rather than stamping it."]},{"id":"stickercity","icon":"🏙️","title":"Sticker Collage City","time":"15–35 min","mess":"Low","desc":"A low-mess activity for days when paint is too much.","buy":["foam-stickers","poster-board","markers-broad","glue-sticks","painters-tape"],"home":["Large magazine pictures cut out by an adult — optional"],"steps":["Tape a large sheet to the table.","Draw a few roads or giant boxes for houses.","Give her a small bowl/tray of LARGE stickers.","Let her build a completely nonsensical city.","Add marker windows, roads, suns, people, or scribbles."],"ideas":["Make an animal city, vehicle city, or rainbow city.","Use one huge letter of her name as the collage shape.","Make a reusable sticker tray so she chooses only a few at a time.","Hang the whole poster."]},{"id":"puppets","icon":"🧸","title":"Paper Bag Puppet Theater","time":"25–45 min","mess":"Low–medium","desc":"Make big, simple puppets and immediately turn the craft into pretend play.","buy":["paper-bags","markers-broad","jumbo-crayons","foam-stickers","construction-paper","glue-sticks","adult-scissors"],"home":["Blanket/chair for a tiny puppet theater"],"steps":["Color the front of the paper bag.","Adult cuts a few large ears, noses, or shapes from construction paper.","She chooses where to glue the large pieces.","Add big stickers or marker features.","Put the puppet on a hand and immediately invent a silly voice."],"ideas":["Make one family of puppets over several days.","Create animal puppets based on favorite books.","Write the puppet’s name and date on the back.","Let her puppet ask you questions."]},{"id":"playdoh","icon":"🟣","title":"Play-Doh Texture Lab","time":"20–40 min","mess":"Low–medium","desc":"Squish, roll, stamp, poke, and compare textures.","buy":["playdoh","dough-tools"],"home":["Large cookie cutters","Plastic fork/spoon","Toy animal feet","Placemat or tray"],"steps":["Put out only 2–3 colors.","Roll a thick pancake of dough.","Press different safe household textures into it.","Make tracks using toy animal feet or a chunky wheel.","Squish it all together and start again."],"ideas":["Make giant pretend cookies.","Create roads for toy cars.","Mix tiny amounts of two dough colors and predict the result.","Take a photo of anything she is proud of before remixing."]},{"id":"box","icon":"📦","title":"The Cardboard Box House","time":"45–90 min","mess":"High","desc":"Turn a shipping box into something she can crawl into and decorate.","buy":["paint-sticks","markers-broad","dot-markers","foam-stickers","paper-roll","painters-tape"],"home":["Large cardboard box","Adult utility knife/scissors"],"steps":["Adult cuts a large doorway and any windows before she joins.","Reinforce sharp or rough cardboard edges with tape.","Let her color the walls with paint sticks and markers.","Add dot markers and large stickers as a second phase.","Write the house name over the door together."],"ideas":["Make a grocery store, rocket ship, veterinary clinic, castle, or car wash.","Add a paper-roll sign.","Use a second box as furniture.","Photograph it before recycling and save one decorated wall panel."]},{"id":"window","icon":"🪟","title":"Window Marker Gallery","time":"10–30 min","mess":"Low–medium","desc":"Use washable window markers on a safe glass surface for a totally different drawing experience.","buy":["window-markers"],"home":["Safe reachable window or glass door with adult present","Microfiber cloth","Adult glass cleaner for cleanup"],"steps":["Choose a glass surface where she can stand safely.","Start with only 3–4 marker colors.","Draw giant circles, faces, roads, or weather.","Let her erase part with a damp cloth and redraw.","Adult cleans the glass fully when finished."],"ideas":["Draw outside scenery onto the window.","Make a giant height line and decorate around it.","Draw seasonal decorations without paper.","Photograph before wiping it away."]},{"id":"handprint","icon":"🖐️","title":"Handprint Family Canvas","time":"15–25 min + dry","mess":"Medium–high","desc":"A controlled messy project that creates a keepsake instead of just another sheet of paper.","buy":["canvas-panels","tempera-colors","foam-brushes","palette","permanent-marker"],"home":["Wet washcloth ready before you start"],"steps":["Choose one paint color and brush a thin layer onto her palm.","Press hand straight down onto the canvas and lift straight up.","Wash her hand immediately.","After it dries, add another handprint or let her paint around it.","Adult writes her name, age, and date on the back."],"ideas":["Make one every birthday.","Add parent handprints on a larger canvas.","Use different colors for different family members.","Photograph her hand next to the finished print."]},{"id":"mixing","icon":"🧪","title":"Color Mixing Laboratory","time":"15–30 min","mess":"Medium","desc":"A simple first experiment: two colors go in, a new color comes out.","buy":["tempera-colors","tempera-white","cardstock","palette","big-brushes"],"home":["Water cup","Paper towel","Old spoon for parent portioning"],"steps":["Put tiny puddles of red, yellow, and blue in separate wells.","Make a second empty mixing area.","Let her choose two colors and mix them together.","Paint the new color on paper.","Repeat with other pairs and then add white to make lighter versions."],"ideas":["Make a page labeled with each color recipe.","Ask her to predict the new color before mixing.","Write her funny names for the colors on the back.","Use the mixed colors to paint a wooden shape afterward."]}];
+const KEY='michaelsArtRun_v3';
+const OLD='michaelsToddlerArtChecklist_v2';
+let state={checked:[],cat:'All',activity:null,view:'shop',mode:'all'};
+let last=null, snackTimer=null;
+function safeRead(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function safeWrite(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function boot(){
+  const saved=safeRead(KEY), old=safeRead(OLD);
+  if(saved&&typeof saved==='object') state={...state,...saved};
+  else if(old&&typeof old==='object') state={...state,checked:Array.isArray(old.checked)?old.checked:[]};
+  if(!Array.isArray(state.checked)) state.checked=[];
+  document.querySelectorAll('.item-check').forEach(cb=>cb.checked=state.checked.includes(cb.dataset.item));
+  setMode(state.mode||'all',false); setView(state.view||'shop',false); updateAll();
+}
+function setAllCheckboxes(id,on){document.querySelectorAll('.item-check[data-item="'+CSS.escape(id)+'"]').forEach(x=>x.checked=on)}
+function toggleId(id,on){const was=state.checked.includes(id); last={id,was}; state.checked=on?[...new Set([...state.checked,id])]:state.checked.filter(x=>x!==id);setAllCheckboxes(id,on);safeWrite();updateAll();snack(on?'Added to cart':'Back on the list')}
+document.addEventListener('change',e=>{if(e.target.matches('.item-check')) toggleId(e.target.dataset.item,e.target.checked)});
+function updateAll(){
+ const done=state.checked.length,total=ITEMS.length,left=total-done,p=Math.round(done/total*100);
+ document.querySelectorAll('[data-done]').forEach(x=>x.textContent=done);document.querySelectorAll('[data-total]').forEach(x=>x.textContent=total);document.querySelectorAll('[data-left]').forEach(x=>x.textContent=left);
+ document.getElementById('progressFill').style.width=p+'%';
+ document.getElementById('navBadge').textContent=left;document.getElementById('navBadge').style.display=left?'grid':'none';
+ applyFilters(); updateSectionCounts();
+}
+function setMode(mode,save=true){state.mode=mode;const el=document.getElementById('mode-'+mode);if(el)el.checked=true;if(save){safeWrite();updateAll()}}
+document.querySelectorAll('input[name=mode]').forEach(r=>r.addEventListener('change',()=>{state.mode=r.value;safeWrite();updateAll()}));
+function setView(v,save=true){state.view=v;const radio=document.getElementById('view-'+v);if(radio)radio.checked=true;document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===v+'Screen'));if(save)safeWrite()}
+document.querySelectorAll('input[name=view]').forEach(r=>r.addEventListener('change',()=>setView(r.value)));
+const search=document.getElementById('search'), clearSearch=document.getElementById('clearSearch');
+search.addEventListener('input',()=>{clearSearch.classList.toggle('show',!!search.value);applyFilters();updateSectionCounts()});clearSearch.addEventListener('click',()=>{search.value='';clearSearch.classList.remove('show');applyFilters();updateSectionCounts();search.focus()});
+document.querySelectorAll('.cat-btn').forEach(b=>b.addEventListener('click',()=>{state.cat=b.dataset.cat;safeWrite();document.querySelectorAll('.cat-btn').forEach(x=>x.classList.toggle('active',x===b));applyFilters();updateSectionCounts()}));
+function applyFilters(){
+ const q=search.value.trim().toLowerCase(); const wanted=state.activity?new Set((ACTIVITIES.find(a=>a.id===state.activity)||{buy:[]}).buy):null;
+ document.querySelectorAll('.shop-item').forEach(row=>{let show=true;if(state.cat!=='All'&&row.dataset.cat!==state.cat)show=false;if(q&&!row.dataset.search.includes(q))show=false;if(wanted&&!wanted.has(row.dataset.itemRow))show=false;if(state.mode==='essential'&&row.dataset.essential!=='true')show=false;if(state.mode==='left'&&state.checked.includes(row.dataset.itemRow))show=false;row.hidden=!show});
+ document.querySelectorAll('.shop-section').forEach(sec=>{const any=[...sec.querySelectorAll('.shop-item')].some(x=>!x.hidden);sec.hidden=!any});
+ const visible=[...document.querySelectorAll('.shop-item')].filter(x=>!x.hidden).length;document.getElementById('empty').classList.toggle('show',visible===0);
+}
+function updateSectionCounts(){document.querySelectorAll('.shop-section').forEach(sec=>{const visible=[...sec.querySelectorAll('.shop-item')].filter(x=>!x.hidden);const left=visible.filter(x=>!state.checked.includes(x.dataset.itemRow)).length;const lab=sec.querySelector('.section-count');if(lab)lab.textContent=state.mode==='left'?left+' left':visible.length+' item'+(visible.length===1?'':'s')})}
+document.querySelectorAll('.shop-activity').forEach(b=>b.addEventListener('click',()=>{state.activity=b.dataset.shopActivity;state.cat='All';state.mode='all';safeWrite();document.getElementById('mode-all').checked=true;document.querySelectorAll('.cat-btn').forEach(x=>x.classList.toggle('active',x.dataset.cat==='All'));const a=ACTIVITIES.find(x=>x.id===state.activity);document.getElementById('activityFilterText').textContent=a?'Only: '+a.title:'';document.getElementById('filterBanner').classList.add('show');setView('shop');updateAll();window.scrollTo({top:0,behavior:'smooth'})}));
+document.getElementById('clearActivity').addEventListener('click',()=>{state.activity=null;safeWrite();document.getElementById('filterBanner').classList.remove('show');updateAll()});
+if(state.activity){const a=ACTIVITIES.find(x=>x.id===state.activity);if(a){document.getElementById('activityFilterText').textContent='Only: '+a.title;document.getElementById('filterBanner').classList.add('show')}}
+document.getElementById('resetBtn').addEventListener('click',()=>{if(confirm('Clear all '+ITEMS.length+' checkmarks?')){state.checked=[];document.querySelectorAll('.item-check').forEach(x=>x.checked=false);safeWrite();updateAll()}});
+function snack(t){document.getElementById('snackText').textContent=t;const s=document.getElementById('snack');s.classList.add('show');clearTimeout(snackTimer);snackTimer=setTimeout(()=>s.classList.remove('show'),2200)}
+document.getElementById('undo').addEventListener('click',()=>{if(!last)return;const x=last;last=null;toggleId(x.id,x.was);document.getElementById('snack').classList.remove('show')});
+boot();
+</script></body></html>
